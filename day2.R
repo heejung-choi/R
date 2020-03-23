@@ -2,7 +2,7 @@
 x1 <-matrix(1:8, nrow = 2)
 #matrix는 R이 내장하고 있는 것 
 x1
-# 행이 2개이기 때문에 2*4 matrix생성성
+# 행이 2개이기 때문에 2*4 matrix생성
 x1<-x1*3
 x1
 #각각의 원소마다 3을 곱함
@@ -87,6 +87,7 @@ apply(x2, 1, sum); apply(x2, 2, sum)
 # Returns a vector or array or list of values obtained 
 # by applying a function to margins of an array or matrix.
 # array가 매트릭스에 포함된다고 본다.
+# 구글 검색시 뒤에 in r을 붙이면 쉽게 정보를 찾을 수 있다. 
 apply(x2, 1, max)
 apply(x2, 1, min)
 apply(x2, 1, mean)
@@ -94,3 +95,237 @@ apply(x2, 1, mean)
 apply(x2, 2, max)
 apply(x2, 2, min)
 apply(x2, 2, mean)
+
+# Array 실습
+# 2행 3열 5층짜리 배열을 만들어줬다.
+a1 <- array(1:30, dim=c(2,3,5))
+a1
+a1[1,3,4]
+#행과 열을 생략하면 모든이라는 뜻이다. 3층의 모든 식구들이 다 나온다.
+a1[,,3]
+# 모든 층의 2열 데이터를 뽑아온다.
+a1[,2,]
+a1[1,,]
+a1[,2,]
+# array 구조를 유지하고 싶다면 drop을 한다.
+a1[1,3,4,drop=F]
+
+#현재 워킹 디렉토리 찾기
+getwd();
+
+
+# factor 실습
+#numeric
+score <- c(1,3,2,4,2,1,3,5,1,3,3,3)
+#character
+score2 <- c(1,3,2,4,2,1,3,5,1,3,3,3,"3")
+class(score)
+summary(score)
+#as.factor로 해도 되고 factor라고 해도 된다.
+f_score <- factor(score)
+
+class(f_score)
+#levels을 명시해주지 않았기 때문에 모든 값으로 넣어준다.
+f_score
+# summary를 하면 숫자라고 보지 않고 갯수를 세준다. 텍스트마이닝 할때 유용
+summary(f_score) 
+# levels들만 수행0
+#팩터는 정해진 범주 값을 저장하는 백터를 의미한다.
+
+levels(f_score)0
+
+plot(score)
+plot(f_score)
+
+#data에 금,일이 없기 때문에 levels에 금,일이 빠진다.
+data1 <- c("월","수","토","월",
+           "목","화")
+data1
+class(data1)
+summary(data1)
+day1 <- factor(data1)
+day1
+class(day1)
+summary(day1)
+levels(day1)
+# 레벨 주는 것
+#. 별 역할 없다 
+week.korabbname <- c("일", "월", "화",
+                     "수", "목", "금", "토")
+day2 <- factor(data1, 
+               levels=week.korabbname)
+day2
+summary(day2)
+# factor데이터 안에 있는 값들을 범주로 지정해준다. 
+# 지정해주지 않는다면 처음에 지정해줬던 데이터가 전부인줄 안다.
+levels(day2)
+
+
+#abo가 levels에 있지만 ab는 없다. 이때 ab는 결측값 처리가 된다 <NA>
+btype <- factor(
+  c("A", "O", "AB", "B", "O", "A"), 
+  levels=c("A", "B", "O"))
+btype
+summary(btype)
+levels(btype)
+
+gender <- factor(c(1,2,1,1,1,2,1,2), 
+                 levels=c(1,2), 
+                 labels=c("남성", "여성"))
+gender
+summary(gender)
+levels(gender)
+
+# 내장 데이터셋
+data()
+iris; head(iris);tail(iris) 
+View(iris)
+str(iris)
+
+library()
+
+#Dataframe 실습
+no <- c(1,2,3,4)
+name <- c('Apple','Banana','Peach','Berry')
+qty <- c(5,2,7,9)
+price <- c(500,200,200,500)
+fruit <- data.frame(no, name, qty, price)
+str(fruit)
+View(fruit)
+
+fruit[1,]
+fruit[-1,]
+fruit[,2]
+fruit[,3] # fruit[,3, drop=F]
+fruit[, c(3,4)]
+fruit[3,2]
+fruit[3,1]
+
+fruit[,3]
+fruit$qty
+fruit[[3]]
+fruit[3]  # 데이터프레임 형식 유지
+
+str(fruit$qty)
+str(fruit[3])
+
+# dataframe exam1
+english <- c(90, 80, 60, 70)
+math <- c(50, 60, 100, 20)
+classnum <- c(1,1,2,2)
+df_midterm <- data.frame(
+  english, math, classnum)
+df_midterm
+str(df_midterm)
+colnames(df_midterm)
+rownames(df_midterm)
+names(df_midterm)
+mean(df_midterm$english)
+mean(df_midterm$math)
+
+df_midterm2 <- data.frame(
+  c(90, 80, 60, 70), 
+  c(50, 60, 100, 20), 
+  c(1,1,2,2))
+colnames(df_midterm2)
+rownames(df_midterm2)
+names(df_midterm2)
+df_midterm2
+df_midterm2 <- data.frame(
+  영어=c(90, 80, 60, 70), 
+  수학=c(50, 60, 100, 20), 
+  클래스=c(1,1,2,2))
+df_midterm2
+df_midterm2$영어
+
+df <- data.frame(var1=c(4,3,8), 
+                 var2=c(2,6)) # 오류
+df <- data.frame(var1=c(4,3,8), 
+                 var2=c(2,6,1))
+str(df)
+df$var_sum <- df$var1 + df$var2
+df$var_mean <- df$var_sum/2
+df$result <- ifelse(df$var1>df$var2, 
+                    "var1이 크다", "var1이 작다")
+
+getwd() # setwd('xxx')
+
+#csv파일열기
+score <- read.csv("data/score.csv")
+score
+str(score)
+score$sum <- 
+  score$math+score$english+score$science
+score$result <- ifelse(score$sum >= 200, 
+                       "pass", "fail")
+score
+
+summary(score$result)
+table(score$result)
+summary(factor(score$result))
+score$result = factor(score$result) 
+str(score)
+summary(score)
+score$id = as.character(score$id)
+score$class = factor(score$class)
+
+score$grade<-ifelse(score$sum >= 230,"A",
+                    ifelse(score$sum >= 215,"B", 
+                           ifelse(score$sum >=200,"C","D")))
+score
+
+# order() 와 sort()
+v <- c(10,3,7,4,8)
+sort(v)
+order(v)
+
+emp <- read.csv(file.choose(),
+                stringsAsFactors = F)
+emp
+str(emp)
+
+# emp에서 직원 이름
+emp$ename
+emp[,2]
+emp[,"ename"] 
+emp[,2, drop=FALSE] 
+emp[,"ename",drop=F] 
+emp[2]
+emp["ename"] 
+
+# emp에서 직원이름, 잡, 샐러리
+emp[,c(2,3,6)]
+emp[,c("ename","job","sal")]
+subset(emp,select = c(ename, job, sal))
+?subset
+# emp에서 1,2,3 행 들만
+emp[1:3,]
+emp[c(1,2,3),]
+
+# ename이 "KING"인 직원의 모든 정보
+emp[9,] 
+emp$ename=="KING"
+emp[c(F,F,F,F,F,F,F,F,T,F,F,F,
+      F,F,F,F,F,F,F,F),]
+emp[emp$ename=="KING",]
+subset(emp,subset=emp$ename=="KING")
+subset(emp,emp$ename=="KING") 
+
+emp[emp$ename=="KING",] 
+
+# 커미션을 받는 직원들의 모든 정보 출력
+emp[!is.na(emp$comm),]
+subset(emp,!is.na(emp$comm)) 
+
+# select ename,sal from emp where sal>=2000
+subset(emp, select=c("ename","sal"), 
+       subset= emp$sal>= 2000)
+subset(emp, emp$sal>= 2000, 
+       c("ename","sal"))
+emp[emp$sal>=2000,c("ename","sal")]
+
+# select ename,sal from emp where sal between 2000 and 3000
+subset(emp, select=c("ename","sal"), subset=(sal>=2000 & sal<=3000))
+emp[emp$sal>=2000 & emp$sal <=3000, c("ename","sal")]
+
+
