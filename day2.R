@@ -177,38 +177,54 @@ summary(gender)
 levels(gender)
 
 # 내장 데이터셋
+# 실행하면 관련한 설명이 나온다.
 data()
-iris; head(iris);tail(iris) 
+#iris
+#head -> 앞에서부터 여섯개 tail은 앞에서부터 여섯개를 보여준다.
+iris; head(iris);tail(iris)
+#여러개 보고싶다면 뒤에 아규먼트를 넣어주면 된다.
 View(iris)
 str(iris)
+# str 실행시
+# IT메모리의 방이 변수
+# 통계학은 속성들의 값이 변수
+#'data.frame':	150 obs. of  5 variables:
+# 150개의 관측치(행) 5개의 속성(변수)
+
 
 library()
-
+# R이 설치되면서 같이 나타는 패키지를 의미한다.
+# base: The R Base Package 자바와 같다.
 #Dataframe 실습
 no <- c(1,2,3,4)
 name <- c('Apple','Banana','Peach','Berry')
 qty <- c(5,2,7,9)
 price <- c(500,200,200,500)
 fruit <- data.frame(no, name, qty, price)
+fruit
 str(fruit)
 View(fruit)
 
 fruit[1,]
+# -1 첫번째행 빼고
 fruit[-1,]
 fruit[,2]
-fruit[,3] # fruit[,3, drop=F]
+fruit[,3] 
+fruit[,3, drop=F]
 fruit[, c(3,4)]
 fruit[3,2]
 fruit[3,1]
 
 fruit[,3]
-fruit$qty
+fruit$qty # 가장 권장하는 방법, 명칭은 가독성이 좋다.
+#자바의 .연산자가 r에서는 $로 쓰인다. 연산자의 의미(멤버연산자)
 fruit[[3]]
-fruit[3]  # 데이터프레임 형식 유지
+fruit[3]  # 데이터프레임 형식 유지 나머지는 백터로
 
 str(fruit$qty)
 str(fruit[3])
 
+#do it 샘플데이터
 # dataframe exam1
 english <- c(90, 80, 60, 70)
 math <- c(50, 60, 100, 20)
@@ -217,7 +233,9 @@ df_midterm <- data.frame(
   english, math, classnum)
 df_midterm
 str(df_midterm)
+# names(df_midterm)라고 하면 열 우선이기 때문에 colnames를 보내준다.
 colnames(df_midterm)
+#rownames 자동으로 1234로 부여
 rownames(df_midterm)
 names(df_midterm)
 mean(df_midterm$english)
@@ -238,29 +256,41 @@ df_midterm2 <- data.frame(
 df_midterm2
 df_midterm2$영어
 
-df <- data.frame(var1=c(4,3,8), 
-                 var2=c(2,6)) # 오류
+#df <- data.frame(var1=c(4,3,8), 
+#                 var2=c(2,6)) # 오류
+#Error in data.frame(var1 = c(4, 3, 8), var2 = c(2, 6)) : 
+#arguments imply differing number of rows: 3, 2
+#첫번째 변수는 rows가 3개인데 두번째 변수는 2개이다 -> 오류
+
 df <- data.frame(var1=c(4,3,8), 
                  var2=c(2,6,1))
 str(df)
+#df라는 데이터 프래임에 var_sum이라는 변수를 새롭게 추가하겠다는 뜻
+#df의 var1과 var2를 추가해주겠다라는 뜻이다.
 df$var_sum <- df$var1 + df$var2
-df$var_mean <- df$var_sum/2
 df$result <- ifelse(df$var1>df$var2, 
                     "var1이 크다", "var1이 작다")
-
+df
 getwd() # setwd('xxx')
 
 #csv파일열기
 score <- read.csv("data/score.csv")
 score
+View(score)
 str(score)
+#변수 추가 변수추가
 score$sum <- 
-  score$math+score$english+score$science
+score$math+score$english+score$science
 score$result <- ifelse(score$sum >= 200, 
                        "pass", "fail")
-score
-
+score;
+#팩터가 아니기 때문에 summary를 해도 갯수가 안나온다.
+#서머리는 아규먼트로 지정된 백터의 타입이 팩터형인가 아닌가에 따라 
+#처리하는 방법이 다르다.
+#범주형이 팩터이면 갯수를 출력해준다.
 summary(score$result)
+#이럴때 table함수를 돌리면 무조건 개수를 세준다 팩터/백터 관계없이.
+#개수를 셀때는 table로 많이 한다.
 table(score$result)
 summary(factor(score$result))
 score$result = factor(score$result) 
@@ -275,10 +305,10 @@ score$grade<-ifelse(score$sum >= 230,"A",
 score
 
 # order() 와 sort()
-v <- c(10,3,7,4,8)
-sort(v)
+v <- c(10,3,7,4,8) 
+sort(v) #인덱스 나열 작은값에서 큰값 순으로
 order(v)
-
+v;
 emp <- read.csv(file.choose(),
                 stringsAsFactors = F)
 emp
@@ -296,30 +326,35 @@ emp["ename"]
 # emp에서 직원이름, 잡, 샐러리
 emp[,c(2,3,6)]
 emp[,c("ename","job","sal")]
-subset(emp,select = c(ename, job, sal))
+subset(emp,select = c(ename, job, sal))# 인용부호 없이 이름만 나열해도 된다.
 ?subset
 # emp에서 1,2,3 행 들만
 emp[1:3,]
 emp[c(1,2,3),]
+?head
+head(emp)
+head(emp, n=10)
 
 # ename이 "KING"인 직원의 모든 정보
 emp[9,] 
-emp$ename=="KING"
+#8번째까지 f이다가 9번째부터 t이기 때문에 꺼내게 된다. 
 emp[c(F,F,F,F,F,F,F,F,T,F,F,F,
       F,F,F,F,F,F,F,F),]
 emp[emp$ename=="KING",]
+#어떤 조건을 뽑아내겠다 라고 한다면 subset
 subset(emp,subset=emp$ename=="KING")
+#subset을 생략할 수도 있다.
 subset(emp,emp$ename=="KING") 
 
 emp[emp$ename=="KING",] 
-
+emp;
 # 커미션을 받는 직원들의 모든 정보 출력
+#na인것은 ture 아닌것은 false가 나온다.
 emp[!is.na(emp$comm),]
-subset(emp,!is.na(emp$comm)) 
-
 # select ename,sal from emp where sal>=2000
 subset(emp, select=c("ename","sal"), 
        subset= emp$sal>= 2000)
+#매개변수 이름 생략하고 순서 맞춰서 할수 있다.
 subset(emp, emp$sal>= 2000, 
        c("ename","sal"))
 emp[emp$sal>=2000,c("ename","sal")]
