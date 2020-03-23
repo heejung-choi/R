@@ -47,12 +47,17 @@ mat1[1,1]
 # 1행,1열을 꺼내줘
 mat1[2,];mat1[,3]
 #2행의 모든열 #3열의 모든 행
+#이렇게 하는것이 벡터로 추출하는 것도 괜찮지만 매트릭스 형태를
+#유지하고 싶다면 drop이라는 속성을 사용한다. -> drop=F 
 mat1[1,1,drop=F]
 mat1[2,,drop=F];mat1[,3,drop=F]
-
+#행의 이름이나 열의 이름을 지우고 싶다면
 rownames(mat1) <- NULL
 colnames(mat2) <- NULL
+
 mat1;mat2
+# 행의 이름이나 열의 이름을 넣고 싶다면
+#이름을 넣는다면 가독성을 높일 수 있다.
 rownames(mat1) <- c("row1","row2","row3")
 colnames(mat1) <- c("col1","col2","col3")
 mat1
