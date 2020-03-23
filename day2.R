@@ -62,18 +62,31 @@ rownames(mat1) <- c("row1","row2","row3")
 colnames(mat1) <- c("col1","col2","col3")
 mat1
 ls()
-mean(x2)
+# 평균
+mean(x2) 
+# 총합
 sum(x2)
+#최솟값
 min(x2)
+#최댓값
 max(x2)
+#열단위로 summary 
 summary(x2)
-
+# 행에 대한 인덱스만 주고 열에 대한 것을 주지 않았다.
+# 두번째 행을 기준으로 일을 한다.
 mean(x2[2,])
 sum(x2[2,])
+# 위와같이 사용해도 되지만, rowSums/colSums를 사용할수도 있다.
 rowSums(x2); colSums(x2)
-
+# 행마다의 합계 colSums 열마다의 합계
+# apply : 적용해라!
+# x2를 가지고 행단위로 sum을 출력해줘 (1) 
+# 2는 열단위로 출력해 달라는 뜻이다.
 apply(x2, 1, sum); apply(x2, 2, sum)  
 ?apply
+# Returns a vector or array or list of values obtained 
+# by applying a function to margins of an array or matrix.
+# array가 매트릭스에 포함된다고 본다.
 apply(x2, 1, max)
 apply(x2, 1, min)
 apply(x2, 1, mean)
