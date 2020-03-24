@@ -1,202 +1,153 @@
-# factor 실습
+#LIST
+v<-c(1,2,3)
+l<-list(1,2,3) 
+v
+l
+v[1]
+l[1]
+l[[1]]
 
-score <- c(1,3,2,4,2,1,3,5,1,3,3,3)
-class(score)
-summary(score)
+lds <- list(1,2,3) 
+lds
+lds+100
+lds[1]
+lds[1]+10
+lds[[1]]+10
 
-f_score <- factor(score)
-class(f_score)
-f_score
-summary(f_score)
-levels(f_score)
-
-plot(score)
-plot(f_score)
-
-
-data1 <- c("월","수","토","월",
-           "목","화")
-data1
-class(data1)
-summary(data1)
-day1 <- factor(data1)
-day1
-class(day1)
-summary(day1)
-levels(day1)
-
-week.korabbname <- c("일", "월", "화",
-                     "수", "목", "금", "토")
-day2 <- factor(data1, 
-               levels=week.korabbname)
-day2
-summary(day2)
-levels(day2)
+names(lds) <- LETTERS[1:3]
+lds
+lds[[2]]
+lds[["B"]]
+lds$B
 
 
+a<-list(
+  a = 1:3,
+  b = "a string",
+  c = pi,
+  d = list(-1,-5)
+)
 
-btype <- factor(
-  c("A", "O", "AB", "B", "O", "A"), 
-  levels=c("A", "B", "O"))
-btype
-summary(btype)
-levels(btype)
-
-gender <- factor(c(1,2,1,1,1,2,1,2), 
-                 levels=c(1,2), 
-                 labels=c("남성", "여성"))
-gender
-summary(gender)
-levels(gender)
-
-# 내장 데이터셋
-data()
-iris; head(iris);tail(iris) 
-View(iris)
-str(iris)
+a[1]
+a[[1]] # a[["a"]]
+a$a
+a[[1]][1]
+a$a[1]
+a[1]+1
+a[[1]]+1
+a[[1]][2] <- 100
+new_a <- unlist(a[1])
+a[1]; new_a
+names(a) <- NULL
+names(new_a) <- NULL
 
 
-#Dataframe 실습
-no <- c(1,2,3,4)
-name <- c('Apple','Banana','Peach','Berry')
-qty <- c(5,2,7,9)
-price <- c(500,200,200,500)
-fruit <- data.frame(no, name, qty, price)
-str(fruit)
-View(fruit)
 
-fruit[1,]
-fruit[-1,]
-fruit[,2]
-fruit[,3] # fruit[,3, drop=F]
-fruit[, c(3,4)]
-fruit[3,2]
-fruit[3,1]
+ls()
+length(ls())
+save(list=ls(),file="all.rda") # varience will save in "all.rda" of rexam
+rm(list=ls())
+ls()
+load("all.rda")
+ls()
 
-fruit[,3]
-fruit$qty
-fruit[[3]]
-fruit[3]  # 데이터프레임 형식 유지
+#read file data
+nums <- scan("data/sample_num.txt")
+word_ansi <- scan("data/sample_ansi.txt",what="")
+words_utf8 <- scan("data/sample_utf8.txt", what="",encoding="UTF-8")
+words_utf8_new <- scan("data/sample_utf8.txt", what="")
+lines_ansi <- readLines("data/sample_ansi.txt")
+lines_utf8 <- readLines("data/sample_utf8.txt",encoding="UTF-8")
 
-str(fruit$qty)
-str(fruit[3])
+df2 <- read.table("data/product_click.log")
+str(df2)
+head(df2)
+summary(df2$V2)
 
-# dataframe exam1
-english <- c(90, 80, 60, 70)
-math <- c(50, 60, 100, 20)
-classnum <- c(1,1,2,2)
-df_midterm <- data.frame(
-  english, math, classnum)
-df_midterm
-str(df_midterm)
-colnames(df_midterm)
-rownames(df_midterm)
-names(df_midterm)
-mean(df_midterm$english)
-mean(df_midterm$math)
 
-df_midterm2 <- data.frame(
-  c(90, 80, 60, 70), 
-  c(50, 60, 100, 20), 
-  c(1,1,2,2))
-colnames(df_midterm2)
-rownames(df_midterm2)
-names(df_midterm2)
-df_midterm2
-df_midterm2 <- data.frame(
-  영어=c(90, 80, 60, 70), 
-  수학=c(50, 60, 100, 20), 
-  클래스=c(1,1,2,2))
-df_midterm2
-df_midterm2$영어
+for(data in month.name) 
+  print(data)
 
-df <- data.frame(var1=c(4,3,8), 
-                 var2=c(2,6)) # 오류
-df <- data.frame(var1=c(4,3,8), 
-                 var2=c(2,6,1))
-str(df)
-df$var_sum <- df$var1 + df$var2
-df$var_mean <- df$var_sum/2
-df$result <- ifelse(df$var1>df$var2, 
-                    "var1이 크다", "var1이 작다")
+sum <- 0
+for(i in 5:15){
+  if(i%%10==0){
+    break
+  }
+  sum <- sum + i
+  print(paste(i,":",sum))
+}
 
-getwd() # setwd('xxx')
 
-#csv파일열기
-score <- read.csv("data/score.csv")
-score
-str(score)
-score$sum <- 
-  score$math+score$english+score$science
-score$result <- ifelse(score$sum >= 200, 
-                       "pass", "fail")
-score
+sum <-0
+for(i in 5:15){
+  if(i%%10==0){
+    next;  #continue
+  }
+  sum <- sum + i
+  print(paste(i,":",sum))
+}
 
-summary(score$result)
-table(score$result)
-summary(factor(score$result))
-score$result = factor(score$result) 
-str(score)
-summary(score)
-score$id = as.character(score$id)
-score$class = factor(score$class)
+sumNumber <- 0
+while(sumNumber <= 20) { 
+  i <- sample(1:5, 1) 
+  sumNumber <-sumNumber+i; 
+  cat(sumNumber,"\n")
+} 
 
-score$grade<-ifelse(score$sum >= 230,"A",
-                    ifelse(score$sum >= 215,"B", 
-                           ifelse(score$sum >=200,"C","D")))
-score
+repeat {
+  cat("ㅋㅋㅋ\n")
+}
 
-# order() 와 sort()
-v <- c(10,3,7,4,8)
-sort(v)
-order(v)
 
-emp <- read.csv(file.choose(),
-                stringsAsFactors = F)
-emp
-str(emp)
+sumNumber <- 0
+repeat { 
+  i <- sample(1:5, 1) 
+  sumNumber <-sumNumber+i; 
+  cat(sumNumber,"\n")
+  if(sumNumber > 20)
+    break;
+}
 
-# emp에서 직원 이름
-emp$ename
-emp[,2]
-emp[,"ename"] 
-emp[,2, drop=FALSE] 
-emp[,"ename",drop=F] 
-emp[2]
-emp["ename"] 
 
-# emp에서 직원이름, 잡, 샐러리
-emp[,c(2,3,6)]
-emp[,c("ename","job","sal")]
-subset(emp,select = c(ename, job, sal))
-?subset
-# emp에서 1,2,3 행 들만
-emp[1:3,]
-emp[c(1,2,3),]
+# 함수 정의와 활용
 
-# ename이 "KING"인 직원의 모든 정보
-emp[9,] 
-emp$ename=="KING"
-emp[c(F,F,F,F,F,F,F,F,T,F,F,F,
-      F,F,F,F,F,F,F,F),]
-emp[emp$ename=="KING",]
-subset(emp,subset=emp$ename=="KING")
-subset(emp,emp$ename=="KING") 
+func1 <- function() {
+  xx <- 10   # 지역변수
+  yy <- 20
+  return(xx*yy)
+}
+func1()
 
-emp[emp$ename=="KING",] 
+result <- func1()
+result
+xx  # 오류발생
 
-# 커미션을 받는 직원들의 모든 정보 출력
-emp[!is.na(emp$comm),]
-subset(emp,!is.na(emp$comm)) 
 
-# select ename,sal from emp where sal>=2000
-subset(emp, select=c("ename","sal"), 
-       subset= emp$sal>= 2000)
-subset(emp, emp$sal>= 2000, 
-       c("ename","sal"))
-emp[emp$sal>=2000,c("ename","sal")]
+func2 <- function(x,y) {
+  xx <- x
+  yy <- y
+  return(sum(xx, yy))
+}
 
-# select ename,sal from emp where sal between 2000 and 3000
-subset(emp, select=c("ename","sal"), subset=(sal>=2000 & sal<=3000))
-emp[emp$sal>=2000 & emp$sal <=3000, c("ename","sal")]
+func2()
+func2(5,6) # 식 : 연산식, 호출식, 변수, 리터럴
+
+func3 <- function(x,y) {
+  #x3 <- x+1
+  #y3 <- y+1
+  x4 <- func2(x+1, y+1)  # 값(식) : 변수, 리터럴, 연산식, 호출식
+  return(x4)
+}
+
+func3(9, 19)  # 30
+
+func4 <- function(x=100, y=200, z) {
+  return(x+y+z)
+}
+func4()
+func4(10,20,30)
+func4(x=1,y=2,z=3)
+func4(y=11,z=22,x=33)
+func4(z=1000)  
+
 
