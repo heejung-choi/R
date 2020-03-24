@@ -85,7 +85,10 @@ level<-switch(EXPR = su,
        "6"="D등급",
        "E등급")
 cat(score,"점은 ",level," 입니다.")
-  
+
+
+level<-switch(EXPR=as.character(score%/%10),
+              "10"=,"9"="A","8"="B","7"="C","6"="D","F")
 #[문제5] 제어문 사용이 필수는 아님 (^^)
 #다음과 같이 영문자 대문자와 소문자로 구성되는 원소들을 갖는 벡터 alpha 를 생성하여 벡터의 내용을 화면에 출력한다.
 #“Aa” “Bb” …………………….. “Zz”
@@ -95,3 +98,7 @@ for(i in 1:26){
 cat(LETTERS[i],letters[i],sep=""," ")
 }
 
+for(i in 1:length(letters)){
+alpha[i]<-paste(LETTERS[i],letters[i],sep="")
+}
+alpha
