@@ -296,19 +296,18 @@ func1 <- function() {
   return(xx*yy)
 }
 func1()
-
 result <- func1()
 result
-xx  # 오류발생
+#xx
+#오류발생: 지역변수이기 때문에 함수 안에서만 사용 가능
 
-
-func2 <- function(x,y) {
+func2 <- function(x,y) { # 할당된 값이 함수인 객체
   xx <- x
   yy <- y
   return(sum(xx, yy))
 }
 
-func2()
+func2() #Error in func2() : 기본값이 없는 인수 "x"가 누락되어 있습니다
 func2(5,6) # 식 : 연산식, 호출식, 변수, 리터럴
 
 func3 <- function(x,y) {
@@ -323,11 +322,11 @@ func3(9, 19)  # 30
 func4 <- function(x=100, y=200, z) {
   return(x+y+z)
 }
-func4()
-func4(10,20,30)
-func4(x=1,y=2,z=3)
-func4(y=11,z=22,x=33)
-func4(z=1000)  
+func4() # Error in func4() : 기본값이 없는 인수 "z"가 누락되어 있습니다
+func4(10,20,30) #60
+func4(x=1,y=2,z=3) #6
+func4(y=11,z=22,x=33)#66 #매개변수의 순서와 아규먼트의 순서를 다르게 줘도 문제 없다.
+func4(z=1000) #1300
 
 # 쉬트에 있는 함수 코드
 f1 <- function() print("TEST")
@@ -336,7 +335,7 @@ r <- f1()
 r
 f2 <- function(num) {print("TEST"); print(num) }
 f2(100)
-f2()
+f2()#num 누락으로 오류
 f3<- function (p="R") print(p)
 f3()
 f3(p="PYTHON")
