@@ -139,11 +139,12 @@ link = html_nodes(htxt, 'div.list_body a'); length(link)
 article.href = unique(html_attr(link, 'href'))
 article.href
 
+#크롤링 할 수 있는 문서에 제한이 없다.
 # 이미지, 첨부파일 다운 받기 
 # pdf
-res = GET('http://cran.r-project.org/web/packages/httr/httr.pdf')
-writeBin(content(res, 'raw'), 'c:/Temp/httr.pdf')
-
+res = GET('http://cran.r-project.org/web/packages/httr/httr.pdf') #GET함수 호출 요청할 수 있는 객체 생성 #httr 함수 로드 되어있어야 한다.
+writeBin(content(res, 'raw'), 'c:/Temp/httr.pdf') #요청해서 받아온 내용을 바이너리 형식으로 받아오겠다라는 뜻
+#content -> 두번째 아규먼트가 raw면 바이너리로 읽어오겠다. text라면 text로 읽어오겠다라는 뜻.
 # jpg
 h = read_html('http://unico2013.dothome.co.kr/productlog.html')
 imgs = html_nodes(h, 'img')
