@@ -10,7 +10,7 @@ library(readxl) # require(readxl) reqdxl 로드하는것 이것을 해야지 로
 excel_data_ex <- read_excel("book/data_ex.xls")#변수에 담기
 getwd() #현재 접속해 있는 경로 확인 가능
 View(excel_data_ex)
-search()
+search(https://openapi.naver.com/v1/search/blog.xml)
 
 #설치가 끝난것은 오른쪽 탭 packages에 들어가 있다. 거기서 확인할 수 있다.
 
