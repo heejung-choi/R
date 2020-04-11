@@ -82,6 +82,7 @@ edStationNm<-paste("종점:",edStationNm)
 term<-paste("배차간격:",term)
 #출력
 cat(bustitle,busRouteId,length,stStationNm,edStationNm,term,sep="\n")
+
 #[ OPEN API 실습 4 ]
 #네이버의 뉴스에서 “빅데이터” 라는 단어가 들어간 뉴스글들을 검색하여 100개까지 추출한 다음 
 #뉴스 제목을 추출하여 navernews.txt 파일로 저장하시오.

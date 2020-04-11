@@ -162,30 +162,48 @@ gender <- c("M", "F","M","M","F","F")
 
 df <- data.frame(w=weight, h=height)
 df
-
-apply(df, 1, sum, na.rm=TRUE)
-apply(df, 2, sum, na.rm=TRUE)
-lapply(df, sum, na.rm=TRUE)
+# na.rm=TRUE 결측값 포함 안하게
+apply(df, 1, sum, na.rm=TRUE) #행단위로 합
+apply(df, 2, sum, na.rm=TRUE) #열단위로 합
+lapply(df, sum, na.rm=TRUE) 
+#기본은 열단위로 일을 한다. 여기서 l은 list로 받겠다는 것이다.
 sapply(df, sum, na.rm=TRUE)
+# 백터로 가능하다면 백터로 안된다면 매트릭스로
 tapply(1:6, gender, sum, na.rm=TRUE)
+#1:6을 gender라는 값을 기준으로 하여 그룹을 나눠라 (M/F)로 그룹 나눔
 tapply(df$w, gender, mean, na.rm=TRUE)
+#df가 가지고 있는 w의 순서와 gender가 같아야 한다.
 mapply(paste, 1:5, LETTERS[1:5], month.abb[1:5])
+#mutifly -> 다른것은 함수가 두번째 또는 세번째에 오지만 이것은 함수가 첫번째에 온다.
+#가변형 이기 때문에 뒤에 변수를 많이 가져오기 위해서 이다.
+
+#함수를 만들어서 전달
 v<-c("abc", "DEF", "TwT")
+#function을 한줄로 할 경우에는 대괄호가 없어도 된다. 
+#마지막에 있는 값이 추출되는 경우에는 return 함수를 쓰지 않아도 된다.
 sapply(v, function(d) paste("-",d,"-", sep=""))
 
 l<-list("abc", "DEF", "TwT")
+#백터로 리턴하는 결과/ sapply같은 경우에는 그때그때 다르다.
 sapply(l, function(d) paste("-",d,"-", sep=""))
+#리스트로 리턴
 lapply(l, function(d) paste("-",d,"-", sep=""))
 
 flower <- c("rose", "iris", "sunflower", "anemone", "tulip")
+#백터에 들어있는 전체 갯수
 length(flower)
+#문자 길이
 nchar(flower)
+#문자 길이가 5개 이상인 것만 리턴한다. -> list로 리턴했다.
+#데이터셋이 없다라는 것은 NULL
 sapply(flower, function(d) if(nchar(d) > 5) return(d))
-sapply(flower, function(d) if(nchar(d) > 5) d)
-sapply(flower, function(d) if(nchar(d) > 5) return(d) else return(NA))
+sapply(flower, function(d) if(nchar(d) > 5) d)#위와 같은 결과가 나온다. 
+sapply(flower, function(d) if(nchar(d) > 5) return(d) else return(NA)) #NULL값을 NA로 주고 싶다면
 sapply(flower, function(d) paste("-",d,"-", sep=""))
 sapply(flower, function(d, n) if(nchar(d) > n) return(d), 4)
+sapply(flower, function(d, n=5) if(nchar(d) > n) return(d))
 
+r<-NULL
 count <- 1
 myf <- function(x, wt=T){
   print(paste(x,"(",count,")"))
@@ -195,8 +213,10 @@ myf <- function(x, wt=T){
   else
     r <- paste("#", x, "#")
   count <<- count + 1;
-  return(100)
+  print(r)
+  return(r)
 }
+
 result <- sapply(df$w, myf)
 length(result)
 result
@@ -204,9 +224,10 @@ sapply(df$w, myf, F)
 sapply(df$w, myf, wt=F)
 rr1 <- sapply(df$w, myf, wt=F)
 str(rr1)
+print(r)
 
 count <- 1
-sapply(df, myf)
+sapply(df, myf)#데이터 프레임일때는 하나의 열만큼 보낸다.
 rr2 <- sapply(df, myf)
 str(rr2)
 rr2[1,1]
