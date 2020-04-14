@@ -270,7 +270,6 @@ exam %>% filter(class == 1 | class == 3 | class == 5) # 1, 3, 5 반에 해당되
 # %in% 연산자 이용하기
 exam %>% filter(class %in% c(1,3,5))  # 1, 3, 5 반에 해당하면 추출 클래스 변수의 값이 이 안에 해당되는 것과 같으면
 # 추출한 행으로 데이터 만들기
-(class1 <- exam %>% filter(class == 1))  # class가 1인 행 추출, class1에 할당
 (class2 <- exam %>% filter(class == 2) ) # class가 2인 행 추출, class2에 할당
 mean(class1$math)                      # 1반 수학 점수 평균 구하기
 mean(class2$math)                      # 2반 수학 점수 평균 구하기
@@ -287,35 +286,39 @@ exam %>% select(-math, -english)  # math, english 제외
 # class가 1인 행만 추출한 다음 english 추출
 exam %>% filter(class == 1) %>% select(english)
 # ㄴ>from   ㄴ>where                 ㄴ>select 절과 동일 -> sql
+
 # 가독성 있게 줄 바꾸기
-exam %>%
+exam %>% #기호가 바로 뒤에 있어야 한다. 다음행의 첫번째 위치에 올 수 없다.
   filter(class == 1) %>%  # class가 1인 행 추출
   select(english)         # english 추출
 # 일부만 출력하기
 exam %>%
   select(id, math) %>%  # id, math 추출
   head                  # 앞부분 6행까지 추출
+# 아규먼트로 데이터 프레임을 받을 수 있는 것은 같이 써도 된다 -> head와 같이이
 # 일부만 출력하기
 exam %>%
   select(id, math) %>%  # id, math 추출
   head(10)              # 앞부분 10행까지 추출
 
+#pull은 백터
+#select는 데이터 프레임
 iris %>% pull(Species)
 iris %>% select(Species)
-iris %>% select_if(is.numeric)
-iris %>% select(-Sepal.Length, -Petal.Length)
+iris %>% select_if(is.numeric) #numeric 형태인 Sepal.Length Sepal.Width Petal.Length Petal.Width이 꺼내진다.
+iris %>% select(-Sepal.Length, -Petal.Length)#이 두가지 변수 제외하고
 
 # Select column whose name starts with "Petal"
-iris %>% select(starts_with("Petal"))
+iris %>% select(starts_with("Petal"))#변수명이 이것으로 시작
 
 # Select column whose name ends with "Width"
-iris %>% select(ends_with("Width"))
+iris %>% select(ends_with("Width"))# 변수명이 이걸로 끝남
 
 # Select columns whose names contains "etal"
-iris %>% select(contains("etal"))
+iris %>% select(contains("etal"))#etal이 포함
 
 # Select columns whose name maches a regular expression
-iris %>% select(matches(".t."))
+iris %>% select(matches(".t."))#t를 가지고 있는
 
 
 # 오름차순으로 정렬하기
@@ -324,16 +327,20 @@ exam %>% arrange(math)  # math 오름차순 정렬
 exam %>% arrange(desc(math))  # math 내림차순 정렬
 # 정렬 기준 변수 여러개 지정
 exam %>% arrange(desc(class), desc(math))  # class 및 math 오름차순 정렬
-exam %>% arrange(desc(math)) %>% head(1)
+#첫번째 정렬기준 class로 먼저 하고 그것이 같은 것은 두번째 정렬기준으로 
+exam %>% arrange(desc(math)) %>% head(1) #수학점수가 높은 것
 
+#mutate: 변형하다라는 의미/ 없었던 컬럼을 새로 추가
 exam %>%
   mutate(total = math + english + science) %>%  # 총합 변수 추가
   head                                          # 일부 추출
 #여러 파생변수 한 번에 추가하기
 exam %>%
   mutate(total = math + english + science,          # 총합 변수 추가
-         mean = (math + english + science)/3) %>%   # 총평균 변수 추가
-  head     
+         mean = floor((math + english + science)/3)) %>%   # 총평균 변수 추가
+  head  
+
+
 exam %>%
   mutate(total = math + english + science,          # 총합 변수 추가
          mean = total/3) %>%   # 총평균 변수 추가
@@ -347,6 +354,6 @@ exam %>%
 #추가한 변수를 dplyr 코드에 바로 활용하기
 exam %>%
   mutate(total = math + english + science) %>%  # 총합 변수 추가
-  arrange(total) %>%                            # 총합 변수 기준 정렬
+  arrange(desc(total)) %>%                            # 총합 변수 기준 정렬
   head                                          # 일부 추출
 

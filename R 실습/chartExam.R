@@ -7,6 +7,12 @@
 data<-read.table(file="data/product_click.log")
 #v1 시간 #v2는 p
 page<-data$V2
+page<-as.vector(substr(page, 2, 4))
+page<-as.factor(page)
+page
+barplot(page)
+
+
 plot(page, xlab="상품ID",ylab="클릭수",col=terrain.colors(10))
 title(main="세로바 그래프 실습")
 dev.copy(png,"clicklog1.png")
