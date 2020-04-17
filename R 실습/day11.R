@@ -110,8 +110,9 @@ table(is.na(df))  # 결측치 빈도 출력
 table(is.na(df$sex))    # sex 결측치 빈도 출력
 table(is.na(df$score))  # score 결측치 빈도 출력
 # 결측치 포함된 상태로 분석
-mean(df$score)  # 평균 산출
-sum(df$score)   # 합계 산출
+mean(df$score)  # 평균 산출 #한개라도 NA가 있으면 NA가 나온다.
+#이럴 경우 NA를 기본값으로 하고 하거나, 제거하고 하면 된다.
+sum(df$score)   # 합계 산출 
 # 결측치 있는 행 제거하기
 library(dplyr) # dplyr 패키지 로드
 df %>% filter(is.na(score))   # score가 NA인 데이터만 출력
@@ -126,15 +127,16 @@ df_nomiss <- df %>% filter(!is.na(score) & !is.na(sex))
 df_nomiss  
 # 결측치가 하나라도 있으면 제거하기
 df_nomiss2 <- na.omit(df)  # 모든 변수에 결측치 없는 데이터 추출
+#결측치 제거해주는 함수 ( NA 제거)
 
 #분석에 필요한 데이터까지 손실 될 가능성 유의
 # 함수의 결측치 제외 기능 이용하기 - na.rm = T
-mean(df$score, na.rm = T)  # 결측치 제외하고 평균 산출
+mean(df$score, na.rm = T)  # 결측치( NA ) 제외하고 평균 산출
 sum(df$score, na.rm = T)   # 결측치 제외하고 합계 산출
 #summarise()에서 na.rm = T사용하기
 # 결측치 생성
-exam <- read.csv("csv_exam.csv")            # 데이터 불러오기
-table(is.na(exam))
+exam <- read.csv("data/csv_exam.csv")            # 데이터 불러오기
+table(is.na(exam)) #FALSE만 100개 나온다.
 exam[c(3, 8, 15), "math"] <- NA             # 3, 8, 15행의 math에 NA 할당
 #평균 구하기
 exam %>% summarise(mean_math = mean(math))             # 평균 산출
@@ -144,9 +146,10 @@ exam %>% summarise(mean_math = mean(math, na.rm = T),      # 평균 산출
                    sum_math = sum(math, na.rm = T),        # 합계 산출
                    median_math = median(math, na.rm = T))  # 중앙값 산출
 boxplot(exam$math)
-mean(exam$math, na.rm = T)  # 결측치 제외하고 math 평균 산출
+mean<-mean(exam$math, na.rm = T)  # 결측치 제외하고 math 평균 산출
 # 평균으로 대체하기
 exam$math <- ifelse(is.na(exam$math), 55, exam$math)  # math가 NA면 55로 대체
+exam$math <- ifelse(is.na(exam$math), mean, exam$math) 
 table(is.na(exam$math))                               # 결측치 빈도표 생성
 mean(exam$math)  # math 평균 산출
 
@@ -162,7 +165,7 @@ table(outlier$score)
 outlier$sex <- ifelse(outlier$sex == 3, NA, outlier$sex)
 
 #결측 처리하기 - score
-# sex가 1~5 아니면 NA 할당
+# score가 1~5 아니면 NA 할당
 outlier$score <- ifelse(outlier$score > 5, NA, outlier$score)
 
 # 결측치 제외하고 분석
@@ -171,12 +174,13 @@ outlier %>%
   group_by(sex) %>%
   summarise(mean_score = mean(score))
 
-mpg <- as.data.frame(ggplot2::mpg)
+mpg <- as.data.frame(ggplot2::mpg) #여기서 tibble은 확장된 것이라고 생각하면 된다.
 boxplot(mpg$hwy)
-
+boxplot(mpg$hwy, range=2)
+summary(mpg$hwy)
 #상자그림 통계치 출력
 boxplot(mpg$hwy)$stats  # 상자그림 통계치 출력
-
+View(mpg)
 # 결측 처리하기
 # 12~37 벗어나면 NA 할당
 mpg$hwy <- ifelse(mpg$hwy < 12 | mpg$hwy > 37, NA, mpg$hwy)

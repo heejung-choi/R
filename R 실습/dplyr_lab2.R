@@ -50,12 +50,28 @@ asianM
 midwest %>% mutate(midwest=ifelse(back>=asianM$count,"large","small"))
 
 #4. 다음에 제시된 문제를 각각 4-1, 4-2, 4-3 으로 넘버링 하여 해결 코드를 R로 작성한다.
-#4-1 displ(배기량)이 4이하인 자동차와 5이하인 자동차 중 어떤 
+#4-1 displ(배기량)이 4이하 5이상인 자동차 중 어떤 
 #자동차의 hwy(고속도로 연비)가 평균적으로 더 높은지 알아보세오
+#mpg %>% filter(displ<=4|displ>=5)%>%group_by(displ<=4,displ>=5) %>% summarise(mean(hwy))
+mpg %>% filter(displ<=4)%>%group_by(displ<=4) %>% summarise(mean(hwy))
+mpg %>% filter(displ>=5)%>%group_by(displ>=5) %>% summarise(mean(hwy))
 
-#4-2audi와 toyota 중 어느 manafacturer 의 cty가 더 높은지 알아보세요
 
+install.packages("sqldf")
+summary(mpg)
+#4-2audi와 toyota 중 어느 manafacturer 의 cty(도시연비)가 더 높은지 알아보세요
+mpg %>% filter(manufacturer=='audi'|manufacturer=='toyota') %>% group_by(manufacturer) %>% summarise(mean(cty))
 #4-3 chevrilet ford honda 자동차의 고속도로 연비 평균을 알아보려고 합니다.
 # 이회사들의 자동차를 추출한 뒤 hwy 전체 평균을 구해보세요
+mpg %>% filter(manufacturer=='chevrolet'|manufacturer=='ford'|manufacturer=='honda') %>% group_by(manufacturer) %>% summarise(mean(hwy))
 
+#5-1 mpg데이터는 11개 변수로 구성되어 있다.
+# mpg데이터에서 class(자동차의 종류), cty(도시연비)
+#변수를 추출해 새로운 데이터를 만드세요 
+mpgNew<-mpg %>% select(class,cty)
+mpgNew %>% head(5)
+#5-2
+mpgNew %>% filter(class=='suv'|class=='compact')%>% group_by(class) %>% summarise(mean(cty))
 
+#6
+mpg %>% filter(manufacturer=='audi') %>% arrange(desc(hwy)) %>% head(5)
