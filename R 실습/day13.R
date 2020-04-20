@@ -163,7 +163,7 @@ ggplot(coSalesDF, aes(x=year, y=sales)) + geom_line(size=2, aes(group=company,co
 ggplot(coSalesDF, aes(x=year, y=sales)) + geom_line(size=2, aes(group=company,colour=company), linetype = 3)
 ggplot(coSalesDF, aes(x=year, y=sales)) + geom_line(size=2, aes(group=company,colour=company), linetype = "dotdash")
 # 점의 종류와 색상
-ggplot(coSalesDF, aes(x=year, y=sales)) + geom_line(size=2, aes(group=company, colour=company)) + geom_point(size=2, shape = 5)
+ggplot(coSalesDF, aes(x=year, y=sales)) + geom_line(size=2, aes(group=company, colour=company)) + geom_point(size=2, shape = 5)#shape 마름모 ->R데이터 시각화 pdfvkdlfdp 
 ggplot(coSalesDF, aes(x=year, y=sales)) + geom_line(size=2, aes(group=company, colour=company)) + geom_point(size=2, shape = '가')
 ggplot(coSalesDF, aes(x=year, y=sales)) + geom_line(size=2, aes(group=company, colour=company)) + geom_point(size=2, shape = '가', colour = "Red")
 
@@ -177,9 +177,10 @@ ggplot(Cars93, aes(x=Weight, y=MPG.highway)) + geom_point(colour="grey", shape=2
 ggplot(Cars93, aes(x=Weight, y=MPG.highway, fill=Price)) + geom_point(colour="grey", shape=21, size=6) 
 ggplot(Cars93, aes(x=Weight, y=MPG.highway)) + geom_point(colour="grey", shape=21, size=6, aes(fill=Price)) 
 ggplot(Cars93, aes(x=Weight, y=MPG.highway, fill=Cylinders)) +  geom_point(colour="grey", shape=21, size=6)
-ggplot(Cars93, aes(x=Weight, y=MPG.highway, fill=Cylinders)) +
+ggplot(Cars93, aes(x=Weight, y=MPG.highway, fill=Cylinders)) +#Cylinders : 칼라가 조금씩 변한다.
   geom_point(colour="grey", shape=21, size=6) +
-  scale_fill_brewer(palette="Oranges") # Oranges  
+  scale_fill_brewer(palette="Oranges") # Oranges 계통의 칼라들로 채운다.
+# scale_fill_brewer: 속에 채우는 것 scale color:테두리
 
 ggplot(Cars93, aes(x=Weight, y=MPG.highway, fill=Cylinders)) +
   geom_point(colour="grey", shape=21, size=6) +
@@ -192,19 +193,27 @@ ggplot(Cars93, aes(x=Weight, y=MPG.highway, fill=Cylinders)) +
 
 w <- data.frame(year=c("2014", "2015", "2016", "2017", "2018"), 
                 weight=c(65,66,64,68,72))
-ggplot(data=w, aes(x=year)) + geom_bar()
-ggplot(data=w, aes(x=year, y=weight)) + geom_bar() # 갯수를 세서 막대를 그리는게 기본이라..
+ggplot(data=w, aes(x=year)) + geom_bar()#count를 해주기 때문에 해당하는 값만큼 지정해준다.
+ggplot(data=w, aes(x=year, y=weight)) + geom_bar() 
+# 갯수를 세서 막대를 그리는게 기본이라.. y=weight로 준다는 것이 의미가 없다.
+
 ggplot(data=w, aes(x=year, y=weight)) + geom_bar(stat="identity")
+#stat="identity" 이렇게 하면 y축에 지정된 변수에 알맞는 값으로 그려준다.
+
 ggplot(data=w, aes(x=year, y=weight)) + geom_bar(stat="identity") + coord_cartesian(ylim=c(60, 75))
+#ylim=c(60, 75) :60값이 시작으로 해서 보여준다.
+
 ggplot(data=w, aes(x=year, y=weight)) + geom_bar(stat="identity") + ylim(60, 75)
-ggplot(data=w, aes(x=year, y=weight)) + geom_bar(aes(fill=year), stat="identity") + coord_cartesian(ylim=c(60, 75))
-ggplot(data=w, aes(x=year, y=weight)) + geom_bar(aes(fill=year), colour="blue", stat="identity") + coord_cartesian(ylim=c(60, 75))
-ggplot(data=w, aes(x=year, y=weight)) + geom_bar(aes(fill=year), stat="identity") + geom_label(aes(label=weight))+coord_cartesian(ylim=c(60, 75))
-ggplot(data=w, aes(x=year, y=weight)) + geom_bar(aes(fill=year), stat="identity") + geom_label(aes(label=weight), nudge_y=1)+coord_cartesian(ylim=c(60, 75))
+ggplot(data=w, aes(x=year, y=weight)) + geom_bar(aes(fill=year), stat="identity") + coord_cartesian(ylim=c(60, 75))#fill로 컬러지정
+ggplot(data=w, aes(x=year, y=weight)) + geom_bar(aes(fill=year), colour="blue", stat="identity") + coord_cartesian(ylim=c(60, 75))#테두리 colour="blue"
+ggplot(data=w, aes(x=year, y=weight)) + geom_bar(aes(fill=year), stat="identity") + geom_label(aes(label=weight))+coord_cartesian(ylim=c(60, 75)) #데이터 라벨 : 값을 보여준다.
+ggplot(data=w, aes(x=year, y=weight)) + geom_bar(aes(fill=year), stat="identity") + geom_label(aes(label=weight), nudge_y=1)+coord_cartesian(ylim=c(60, 75)) #nudge에 따라서 라벨의 위치가 조금씩 바뀐다.
 ggplot(data=w, aes(x=year, y=weight)) + geom_bar(aes(fill=year), stat="identity") + geom_label(aes(label=weight), nudge_y=2)+coord_cartesian(ylim=c(60, 75))
 ggplot(data=w, aes(x=year, y=weight)) + geom_bar(aes(fill=year), stat="identity") + geom_label(aes(label=weight), nudge_y=-1)+coord_cartesian(ylim=c(60, 75)) + labs(title = "테스트", subtitle="ggplot2 패키지를 이용한 시각화", x="년도", y="무게")
+# 위에 제목도 함께 붙여준다.
 
-
+# ggplot 전용 저장
+ggsave("ggplot_test.png")
 
 # 트리맵 라이브러리 설치
 install.packages("treemap")
@@ -215,9 +224,10 @@ sales_df <- read.xlsx("data/data.xlsx", 2, encoding="UTF-8")
 # 트리맵 그리기
 # index에 표현하고 싶은 계층 순서대로 벡터로 생성. product, region 순으로 벡터를 지정함으로써 product가 region보다 더 상위로 구분이 됨
 treemap(sales_df, vSize="saleAmt", index=c("product", "region"), title="A기업 판매현황")
-
+# 지역중심
 # 트리맵 그리기
-treemap(sales_df, vSize="saleAmt", index=c("region", "product"), title="A기업 판매현황")
+treemap(sales_df, vSize="saleAmt", index=c("region", "product"), title="A기업 판매현황22")
+# 제품 중심
 
 # 인터랙티브 그래프 만들기
 # 패키지 준비하기
@@ -225,10 +235,11 @@ install.packages("plotly")
 library(plotly)
 # ggplot으로 그래프 만들기
 p <- ggplot(data = mpg, aes(x = displ, y = hwy, col = drv)) + geom_point()
-p
+#p라는 변수로 담으면 그려지는 것이 아니라 p라는 변수 안에 넣어지는 결과가 된다.
+p 
 
 # 인터랙티브 그래프 만들기
-ggplotly(p)
+ggplotly(p) #클릭하면 없애주고 더블클릭하면 사라진다.
 
 # 인터랙티브 막대 그래프 만들기
 p <- ggplot(data = diamonds, aes(x = cut, fill = clarity)) + geom_bar()
@@ -236,4 +247,29 @@ ggplotly(p)
 
 # 인터랙티브 막대 그래프 만들기
 p <- ggplot(data = diamonds, aes(x = cut, fill = clarity)) + geom_bar(position = "dodge")
+ggplotly(p) # dodge 옆으로 그려준다.
+
+p <- ggplot(mpg, aes(x=displ, y=hwy,  color= manufacturer))+geom_point()
 ggplotly(p)
+
+
+ggplot(mpg, aes(x=displ, y=hwy,  color= manufacturer))+geom_point()#제조사별로 컬러를 하겠다.
+ggplot(mpg, aes(x=displ, y=hwy,  color= manufacturer))+geom_point() + scale_color_manual(values = rainbow(15))
+ggplot(mpg, aes(x=displ, y=hwy,  color= manufacturer))+geom_point() + scale_color_manual(values = topo.colors(15))
+ggplot(mpg, aes(x=displ, y=hwy,  color= manufacturer))+geom_point() + scale_color_brewer(palette = 'Set3')
+#행 설정
+ggplot(mpg, aes(x=displ, y=hwy,  color= manufacturer))+
+  geom_point()+guides(color = guide_legend(nrow = 6))#15개를 행을 6개로 구분하여 출력해준다.
+
+#열 설정
+ggplot(mpg, aes(x=displ, y=hwy,  color= manufacturer))+
+  geom_point()+ scale_fill_brewer(palette="Reds")+ guides(color = guide_legend(ncol = 2)) 
+#ncol = 2 두개의 열로 구성된 범례를 적용 가능
+
+# 범례 항목들 역순으로
+ggplot(mpg, aes(x=displ, y=hwy,  color= manufacturer))+
+  geom_point()+guides(color = guide_legend(reverse = TRUE))
+
+# 범례 없애기
+ggplot(mpg, aes(x=displ, y=hwy,  color= manufacturer))+
+  geom_point()+guides(color=F)
