@@ -198,7 +198,7 @@ ggmap(map_seoul)+geom_point(data=df_add, aes(x=lon, y=lat), alpha=0.5, size=5, c
 # 경고 메세지로 997개의 행이 사라졌다고 뜨는데, 이건 찍고자 하는 지도 밖에 위치해 있기 때문에 뜨는 경고창창
 # 서울지도를 그렸기 때문에, 서울이 아닌 다른 곳들은 다 제거됨
 
-#leaflet 그리기[동적 지도]
+#leaflet 그리기[동적 지도]  
 
 install.packages("leaflet")
 library(leaflet)
