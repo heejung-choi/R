@@ -1,6 +1,6 @@
 # R 함수 정리
 
-
+# day 1
 
 # rep
 
@@ -46,7 +46,7 @@ rev(x)  #배열 순서를 바꿈. 15, 4, 7...순으로 나옴
 # [1] 15  4  7  2 10
 range(x) # 최소 최대값 나옴
 # [1]  2 15
-sort(x) #최솟값 순으로 정렬
+sort(x) #최솟값 순으로 정렬 (작은값에서 큰 값 순으로)
 #[1]  2  4  7 10 15
 sort(x, decreasing = TRUE) #최대값 순으로 정렬
 #[1] 15 10  7  4  2
@@ -63,7 +63,14 @@ order(x) #작은값을 순서로 인덱스
 # 통계 함수
 
 ```R
-max(x);min(x);mean(x);sum(x)
+# 평균
+mean(x2) 
+# 총합
+sum(x2)
+#최솟값
+min(x2)
+#최댓값
+max(x2)
 summary(x)
 ```
 
@@ -120,6 +127,8 @@ paste(fruit, food, sep="", collapse="-");
 
 ![image-20200421194408103](C:\Users\student\AppData\Roaming\Typora\typora-user-images\image-20200421194408103.png)
 
+# day 2
+
 # 벡터 (vector) 
 
  R에서 다루는 가장 기초적인 데이터셋(데이터 구조)로서 1차원으로 사용된다.
@@ -136,15 +145,48 @@ paste(fruit, food, sep="", collapse="-");
 
 가능한 범주 값 (level)만으로 구성되는 벡터이다.
 
+```r
+data1 <- c("월","수","토","월","목","화")
+week.korabbname <- c("일", "월", "화",
+                     "수", "목", "금", "토")
+factor(data1,levels=week.korabbname)
+#팩터에 levels 값을 지정해 줄 수 있다.
+
+levels(gender)<-c("남성","여성")
+#levels에 바로 넣어줄 수도 있다.
+```
+
 
 
 
 
 # matrix
 
-```
+```r
 x1 <-matrix(1:8, nrow = 2)
+mat1; dim(mat1)
+#dim -> 몇행 몇열인지 알려준다
+# nrow: 행의 갯수 / ncol: 열의 갯수
 
+vec1 <- c(1,2,3)
+vec2 <- c(4,5,6)
+vec3 <- c(7,8,9)
+
+mat1 <- rbind(vec1,vec2,vec3); mat1
+#     [,1] [,2] [,3]
+#vec1    1    2    3
+#vec2    4    5    6
+#vec3    7    8    9
+
+mat2 <- cbind(vec1,vec2,vec3); mat2
+     vec1 vec2 vec3
+#[1,]    1    4    7
+#[2,]    2    5    8
+#[3,]    3    6    9
+
+# 행의 이름이나 열의 이름을 넣고 싶다면?
+rownames(mat1) <- c("row1","row2","row3")
+colnames(mat1) <- c("col1","col2","col3")
 ```
 
 2차원의 벡터이다.
@@ -155,7 +197,32 @@ rbind 행단위, cbind 열단위
 
 
 
+# apply
+
+```r
+apply(x2, 1, max)
+apply(x2, 1, min)
+apply(x2, 1, mean)
+
+apply(x2, 2, max)
+apply(x2, 2, min)
+apply(x2, 2, mean)
+# apply : 적용해라!
+# 1은 행단위로 2은 열단위로
+```
+
+
+
 # 배열(array)
+
+```r
+a1 <- array(1:30, dim=c(2,3,5))
+# 2행 3열 5층짜리 배열을 만들겠다.
+a1[1,3,4]
+# 1행 3열 4층 데이터 출력
+a1[,,3]
+#행과 열을 생략하면 모든이라는 뜻이다. 3층의 모든 식구들이 다 나온다.
+```
 
 3차원 벡터이다.
 
@@ -169,10 +236,115 @@ rbind 행단위, cbind 열단위
 
 **모든 열의 데이터 개수(행의 개수)는 동일해야 한다. **
 
+```r
+no <- c(1,2,3,4)
+name <- c('Apple','Banana','Peach','Berry')
+qty <- c(5,2,7,9)
+price <- c(500,200,200,500)
+fruit <- data.frame(no, name, qty, price)
+fruit
+
+#  no   name qty price
+#1  1  Apple   5   500
+#2  2 Banana   2   200
+#3  3  Peach   7   200
+#4  4  Berry   9   500
+```
+
+
+
 
 
 # 리스트
 
 저장 가능한 데이터 타입, 데이터 셋의 종류에 제한이 없다.
 
-벡터 , 행렬, 배열
+벡터 , 행렬, 배열, 데이터프레임 등의 서로 다른 구조의 데이터를 하나로 묶을 수 있는 자료 구조 이다.
+
+라운드 박스 list/ 그냥 박스 vector 객체
+
+
+
+# 현재 디렉토리 찾기: getwd();
+
+```
+getwd()
+```
+
+
+
+# 내장 데이터 셋
+
+### 특정 값 출력 (앞에서 부터 출력, 뒤에서 부터 출력)
+
+```r
+head(iris); #앞에서부터 6개 출력
+tail(iris); #뒤에서부터 6개 출력
+#갯수 지정해주고 싶다면 아규먼트로 숫자 지정해 줄 수 있다.
+head(iris,10);
+```
+
+
+
+# 속성 확인 : STR
+
+```r
+str(iris)
+# str 실행시
+# IT메모리의 방이 변수
+# 통계학은 속성들의 값이 변수
+#'data.frame':	150 obs. of  5 variables:
+# 150개의 관측치(행) 5개의 속성(변수)
+```
+
+
+
+# library()
+
+```r
+library()
+# R이 설치되면서 같이 나타는 패키지를 의미한다.
+# base: The R Base Package 자바와 같다.
+```
+
+
+
+# 행 , 열 이름 출력
+
+```r
+# names(df_midterm)라고 하면 열 우선이기 때문에 colnames를 보내준다.
+colnames(df_midterm)
+#rownames 자동으로 1234로 부여
+rownames(df_midterm)
+```
+
+
+
+# csv 파일 열기
+
+```
+score <- read.csv("data/score.csv")
+```
+
+
+
+# if else
+
+```
+df$result <- ifelse(df$var1>df$var2, 
+                    "var1이 크다", "var1이 작다"
+```
+
+
+
+# subset
+
+```r
+# 기본 형태
+subset(x=diamonds, subset=, select= )
+# 앞에 x/ subset/select 값은 생략해줘도 된다.
+# x : 들어갈 변수
+# subset : 조건
+# select : 뽑아 낼 변수
+```
+
