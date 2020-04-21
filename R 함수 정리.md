@@ -263,6 +263,25 @@ fruit
 
 라운드 박스 list/ 그냥 박스 vector 객체
 
+```r
+#벡터는 연산할 수 있지만, 리스트는 연산할 수 없다.
+#그럴 경우에는 un list 를 한 후 계산한다.
+v*3
+# l*3: Error in l * 3 : 이항연산자에 수치가 아닌 인수입니다
+v[1]*3
+# l[1]*3 : Error in l[1] * 3 : 이항연산자에 수치가 아닌 인수입니다
+# 포장된 채로는 연산을 할 수 없다.
+#그런 경우 겹대괄호를 해줘서 포장된 것을 벗기고 알맹이만 가져와야 한다. 
+# $연산자도 가능한데, 이름이 있어야 사용가능하다.
+
+lds <- list(1,2,3) 
+unlist(lds)+100
+#또는 
+lds[[1]]+10
+a[["a"]]
+#숫자 인덱스 대신 이름 인덱스를 써도 된다.
+```
+
 
 
 # 현재 디렉토리 찾기: getwd();
@@ -346,5 +365,16 @@ subset(x=diamonds, subset=, select= )
 # x : 들어갈 변수
 # subset : 조건
 # select : 뽑아 낼 변수
+```
+
+
+
+# save / load
+
+```
+save(list=ls(),file="all.rda") # varience will save in "all.rda" of rexam
+rm(list=ls())
+ls()
+load("all.rda")
 ```
 
