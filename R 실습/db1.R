@@ -22,6 +22,8 @@ result
 #ggplot에 출력
 install.packages("ggplot2") 
 ggplot(data = result, aes(x = SLENGTH, y = SWIDTH)) + geom_point(aes(color=SPECIES))
+ggsave("db1.jpg")
 
 
 ggplot(data = result, aes(x = PLENGTH, y = PWIDTH)) + geom_point(aes(color=SPECIES))
+ggsave("db2.jpg")

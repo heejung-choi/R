@@ -1,10 +1,9 @@
-library(dplyr)
-library(leaflet)
+rm(list = ls())
+library(dplyr);library(leaflet);library(Kormaps)
 DONG<-read.csv('data/one.csv')
 Encoding(names(korpopmap2))<-'UTF-8'
 Encoding(korpopmap2@data$name)<-'UTF-8'
 Encoding(korpopmap2@data$행정구역별_읍면동)<-'UTF-8'
-
 Encoding(names(korpopmap3))<-'UTF-8'
 Encoding(korpopmap3@data$name)<-'UTF-8'
 Encoding(korpopmap3@data$행정구역별_읍면동)<-'UTF-8'
@@ -12,16 +11,8 @@ head(korpopmap3@data)
 k2 <- korpopmap2
 k3 <- korpopmap3
 
-k2@data[c("C행정구역별_읍면동", "행정구역별_읍면동")]
-k3@data[c("C행정구역별_읍면동", "행정구역별_읍면동")] 
-View(k3)
-
-
-str(k3@data)
-
-
 #강남구 데이터 뽑기
-guname <- '강남구'
+guname <- '강동구'
 gucode <- k2@data[k2@data$name == guname, "code.data"]
 # 강남구: 11230
 pattern <- paste0('^', gucode)
@@ -33,7 +24,7 @@ View(k3@polygons)
 #강남구 데이터 저장
 k3@data$name<-gsub('·','',k3@data$name)
 colnames(DONG)<-c('구별','name','일인가구')
-dong <- DONG %>%filter(구별=='강남구')
+dong <- DONG %>%filter(구별=='강동구')
 k3@data<-merge(k3@data,dong,by.x='name',sort=FALSE)
 mymap <- k3@data
 

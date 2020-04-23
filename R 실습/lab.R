@@ -1,5 +1,5 @@
 library(KoNLP)
-hotel <- readLines("C:/boxak/Rstudy/hotel.txt")
+hotel <- readLines("C:/heejung/Rstudy/hotel.txt")
 hotel2<- extractNoun(hotel)
 hotelUn <- unlist(hotel2)
 hotelUn2<-gsub("[^가-힣]","",hotelUn)
