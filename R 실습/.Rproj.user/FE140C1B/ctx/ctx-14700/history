@@ -1,0 +1,512 @@
+url <- paste(site, i, sep="")
+text <- read_html(url)
+node1 <- html_nodes(text, ".f_link_b")
+newstitle <- html_text(node1)
+node2 <- html_nodes(text, xpath="//*[@id='clusterResultUL']/li/div/div/p")
+newspaper <- html_text(node2, trim=TRUE)
+daum <- cbind(newstitle, newspaper)
+}
+daum
+library(httr)
+library(rvest)
+res = GET('http://cran.r-project.org/web/packages/httr/httr.pdf') #GET함수 호출 요청할 수 있는 객체 생성 #httr 함수 로드 되어있어야 한다.
+writeBin(content(res, 'raw'), 'c:/Temp/httr.pdf')
+h = read_html('http://unico2013.dothome.co.kr/productlog.html')
+imgs = html_nodes(h, 'img')
+img.src = html_attr(imgs, 'src')
+for(i in 1:length(img.src)){
+res = GET(paste('http://unico2013.dothome.co.kr/',img.src[i], sep=""))
+writeBin(content(res, 'raw'), paste('c:/Temp/', img.src[i], sep=""))
+}
+word <- "JAVA javascript Aa 가나다 AAaAaA123 %^&*"
+# 정규표현식 사용
+word <- "JAVA javascript Aa 가나다 AAaAaA123 %^&*"
+gsub(" ", "@", word)#공백은 골뱅이로
+# 정규표현식 사용
+word <- "JAVA javascript Aa 가나다 AAaAaA123 %^&*"
+sub(" ", "@", word)
+# 정규표현식 사용
+word <- "JAVA javascript Aa 가나다 AAaAaA123 %^&*"
+#여기까지는 정규표현식이라고 보기 어렵다. 이렇게 바꿔달라고 요구한것,
+#아래부터 정규표현식
+gsub("(Aa)", "", word)
+# 정규표현식 사용
+word <- "JAVA javascript Aa 가나다 AAaAaA123 %^&*"
+#여기까지는 정규표현식이라고 보기 어렵다. 이렇게 바꿔달라고 요구한것,
+#아래부터 정규표현식
+gsub("(Aa)", "", word)
+# 정규표현식 사용
+word <- "JAVA javascript Aa 가나다 AAaAaA123 %^&*"
+gsub("(Aa){2}", "", word)#두번 연달아 나온 것만 없애줘 라는 뜻
+gsub("(Aa){2}", "", word)#두번 연달아 나온 것만 없애줘 라는 뜻
+#여기까지는 정규표현식이라고 보기 어렵다. 이렇게 바꿔달라고 요구한것,
+#아래부터 정규표현식
+gsub("(Aa)", "", word)#()가로 한것과 그냥한 것과 결과값은 같지만, 그룹핑 하기 위해서 사용하는 것이다.
+#여기까지는 정규표현식이라고 보기 어렵다. 이렇게 바꿔달라고 요구한것,
+#아래부터 정규표현식
+gsub("(Aa)", "", word)#()가로 한것과 그냥한 것과 결과값은 같지만, 그룹핑 하기 위해서 사용하는 것이다.
+# 정규표현식 사용
+word <- "JAVA javascript Aa 가나다 AAaAaA123 %^&*"
+gsub("Aa{2}", "", word)
+gsub("Aa{2}", "", word)
+gsub("[Aa]", "", word)
+gsub("[가-힣]", "", word)
+# 정규표현식 사용
+word <- "JAVA javascript Aa 가나다 AAaAaA123 %^&*"
+gsub("[^가-힣]", "", word)
+# 정규표현식 사용
+word <- "JAVA javascript Aa 가나다 AAaAaA123 %^&*"
+gsub("[&^%*]", "", word)
+# 정규표현식 사용
+word <- "JAVA javascript Aa 가나다 AAaAaA123 %^&*"
+gsub("[[:punct:]]", "", word)#특수문자들 삭제
+# 정규표현식 사용
+word <- "JAVA javascript Aa 가나다 AAaAaA123 %^&*"
+gsub("[[:alnum:]]", "", word)#
+# 정규표현식 사용
+word <- "JAVA javascript Aa 가나다 AAaAaA123 %^&*"
+gsub("[[:alnum:]]", "", word)#
+# 정규표현식 사용
+word <- "JAVA javascript Aa 가나다 AAaAaA123 %^&*"
+gsub("\\d", "", word)
+# 정규표현식 사용
+word <- "JAVA javascript Aa 가나다 AAaAaA123 %^&*"
+gsub("\\D", "", word)
+# 정규표현식 사용
+word <- "JAVA javascript Aa 가나다 AAaAaA123 %^&*"
+("[[:digit:]]", "", word)
+gsub("[[:digit:]]", "", word)#여기까지 모두 같은의미
+gsub("[^[:alnum:]]", "", word)
+# 정규표현식 사용
+word <- "JAVA javascript Aa 가나다 AAaAaA123 %^&*"
+gsub("[[:space:]]", "", word)
+url<- "https://comic.naver.com/genre/bestChallenge.nhn"
+text <- read_html(url)
+text
+node1 <- html_nodes(text, xpath ="//*[@id='content']/div[4]/table/tbody/tr[1]/td[1]/div[2]/h6/a/text()")
+node1
+node1 <- html_nodes(text, xpath ="//*[@id='content']/div[4]/table/tbody/tr[1]/td[1]/div[2]/h6/a")
+node1
+node1 <- html_nodes(text, xpath ="//*[@id='content']/div/table/tbody/tr/td/div/h6/a")
+node1
+node1 <- html_nodes(text, xpath ="//*[@id='content']/div/table/a")
+node1
+node1 <- html_nodes(text, ".challengeTitle")
+node1
+comicName <- html_text(node1)
+comicName
+comicName <- html_text(node1 trim=TRUE))
+comicName <- html_text(node1 trim=TRUE)
+comicName <- html_text(node1, trim=TRUE)
+comicName
+node2 <- html_nodes(text, ".summary")
+node2
+comicSummary <- html_text(node2, trim=TRUE)
+comicSummary
+node3 <- html_nodes(text, ".star>strong")
+node3
+node3 <- html_nodes(text, ".star strong")
+node3
+node3 <- html_nodes(text, ".star")
+node3
+node3 <- html_nodes(text, ".star>title")
+node3
+node3 <- html_nodes(text, ".rating_type>strong")
+node3
+comicGrade <- html_text(node3)
+comicGrade
+url<- "https://comic.naver.com/genre/bestChallenge.nhn"
+text <- read_html(url)
+text
+node1 <- html_nodes(text, ".challengeTitle")
+comicName <- html_text(node1, trim=TRUE)
+node2 <- html_nodes(text, ".summary")
+comicSummary <- html_text(node2, trim=TRUE)
+node3 <- html_nodes(text, ".rating_type>strong")
+comicGrade <- html_text(node3)
+naver <- cbind(comicName, comicSummary)
+naver <- cbind(naver, comicGrade)
+write.csv(daum, "navercomic.csv")
+write.csv(naver, "navercomic.csv")
+site<-NULL
+site<- "https://comic.naver.com/genre/bestChallenge.nhn?&page="
+text <- NULL
+movie.review <- NULL
+for(i in 1: 20) {
+node1 <- html_nodes(text, ".challengeTitle")
+comicName <- html_text(node1, trim=TRUE)
+node2 <- html_nodes(text, ".summary")
+comicSummary <- html_text(node2, trim=TRUE)
+node3 <- html_nodes(text, ".rating_type>strong")
+comicGrade <- html_text(node3)
+naver <- cbind(comicName, comicSummary)
+naver <- cbind(naver, comicGrade)
+write.csv(naver, "navercomic2.csv")
+}
+site<-NULL
+site<- "https://comic.naver.com/genre/bestChallenge.nhn?&page="
+text <- NULL
+movie.review <- NULL
+site<-NULL
+site<- "https://comic.naver.com/genre/bestChallenge.nhn?&page="
+text <- NULL
+movie.review <- NULL
+for(i in 1: 20) {
+url <- paste(site, i, sep="")
+text <- read_html(url)
+node1 <- html_nodes(text, ".challengeTitle")
+comicName <- html_text(node1, trim=TRUE)
+node2 <- html_nodes(text, ".summary")
+comicSummary <- html_text(node2, trim=TRUE)
+node3 <- html_nodes(text, ".rating_type>strong")
+comicGrade <- html_text(node3)
+naver <- cbind(comicName, comicSummary)
+naver <- cbind(naver, comicGrade)
+write.csv(naver, "navercomic.csv")
+}
+site<-NULL
+site<- "https://comic.naver.com/genre/bestChallenge.nhn?&page="
+text <- NULL
+movie.review <- NULL
+for(i in 1: 20) {
+url <- paste(site, i, sep="")
+text <- read_html(url)
+node1 <- html_nodes(text, ".challengeTitle")
+comicName <- html_text(node1, trim=TRUE)
+node2 <- html_nodes(text, ".summary")
+comicSummary <- html_text(node2, trim=TRUE)
+node3 <- html_nodes(text, ".rating_type>strong")
+comicGrade <- html_text(node3)
+naver <- cbind(comicName, comicSummary)
+naver <- cbind(naver, comicGrade)
+write.csv(naver, "navercomic2.csv")
+}
+read <- readLines("data/memo.txt",encoding="UTF-8")
+read
+read[1]
+read[1]<-gsub("[[:punct:]]", "", read[1])
+read[1]
+read <- readLines("data/memo.txt",encoding="UTF-8")
+read <- readLines("data/memo.txt",encoding="UTF-8")
+read[1]
+a<-gsub("[!&#@%]", "", read[1])
+a
+a<-gsub("[!&#@%$]", "", read[1])
+a
+read[1]<-gsub("[!&#@%$]", "", read[1])
+read[2]
+read[2]<-gsub("e", "E", read[2])
+read[2]
+read[3]
+read[3]<gsub("[1234567890]", "",read[3])
+read[3]
+read[3]<gsub("[1234567890]","",read[3])
+read[3]<-gsub("[0-9]","",read[3])
+read[3]
+read[4]
+read[4]<-gsub("[^가-힣]", "", word)
+read[4]
+read[4]<-gsub("[^가-힣]", "", read[4])
+read[4]
+read <- readLines("data/memo.txt",encoding="UTF-8")
+read[1]<-gsub("[!&#@%$]", "", read[1])
+read[2]<-gsub("e", "E", read[2])
+read[3]<-gsub("[0-9]","",read[3])
+read[4]
+read[4]<-gsub("[A-Z]", "", read[4])
+read[4]
+read[4]<-gsub("[A-Z a-z]", "", read[4])
+read[4]
+read <- readLines("data/memo.txt",encoding="UTF-8")
+read[1]<-gsub("[!&#@%$]", "", read[1])
+read[2]<-gsub("e", "E", read[2])
+read[3]<-gsub("[0-9]","",read[3])
+read[4]<-gsub("[A-Z]", "", read[4])
+read[4]
+read[4]<-gsub("[a-z]", "", read[4])
+read[4]
+read[5]
+read[5]<-gsub("[0-9][[:punct:]]","",read[5])
+read[5]
+read[5]<-gsub("[0-9]","",read[5])
+read[5]
+read[5]<-gsub("[[:punct:]]", "", read[5])
+read[5]
+read[6]
+read[6]<-gsub("[[:space:]]", "", read[6])
+read[6]
+read
+read[7]
+read[7]<-gsub("[A-Z]","[a-z]",read[7])
+read[7]
+read <- readLines("data/memo.txt",encoding="UTF-8")
+read[1]<-gsub("[!&#@%$]", "", read[1])
+read[2]<-gsub("e", "E", read[2])
+read[3]<-gsub("[0-9]","",read[3])
+read[4]<-gsub("[A-Z]", "", read[4])
+read[4]<-gsub("[a-z]", "", read[4])
+read[5]<-gsub("[0-9]","",read[5])
+read[5]<-gsub("[[:punct:]]", "", read[5])
+read[6]<-gsub("[[:space:]]", "", read[6])
+read[7]<-gsub("[A-Z]","a-z",read[7])
+read[7]
+read <- readLines("data/memo.txt",encoding="UTF-8")
+read[1]<-gsub("[!&#@%$]", "", read[1])
+read[2]<-gsub("e", "E", read[2])
+read[3]<-gsub("[0-9]","",read[3])
+read[4]<-gsub("[A-Z]", "", read[4])
+read[4]<-gsub("[a-z]", "", read[4])
+read[5]<-gsub("[0-9]","",read[5])
+read[5]<-gsub("[[:punct:]]", "", read[5])
+read[6]<-gsub("[[:space:]]", "", read[6])
+read[7]<-gsub("[:upper:]","[:lower:]",read[7])
+read[7]
+read[7]<-gsub(\L,read[7])
+read[7]<-gsub("\L",,read[7])
+read <- readLines("data/memo.txt",encoding="UTF-8")
+read[1]<-gsub("[!&#@%$]", "", read[1])
+read[2]<-gsub("e", "E", read[2])
+read[3]<-gsub("[0-9]","",read[3])
+read[4]<-gsub("[A-Z]", "", read[4])
+read[4]<-gsub("[a-z]", "", read[4])
+read[5]<-gsub("[0-9]","",read[5])
+read[5]<-gsub("[[:punct:]]", "", read[5])
+read[6]<-gsub("[[:space:]]", "", read[6])
+tolower(read[7])
+read <- readLines("data/memo.txt",encoding="UTF-8")
+read[1]<-gsub("[!&#@%$]", "", read[1])
+read[2]<-gsub("e", "E", read[2])
+read[3]<-gsub("[0-9]","",read[3])
+read[4]<-gsub("[A-Z]", "", read[4])
+read[4]<-gsub("[a-z]", "", read[4])
+read[5]<-gsub("[0-9]","",read[5])
+read[5]<-gsub("[[:punct:]]", "", read[5])
+read[6]<-gsub("[[:space:]]", "", read[6])
+read[7]<-gsub("[:upper:]","",read[7])
+read[7]
+read <- readLines("data/memo.txt",encoding="UTF-8")
+read[1]<-gsub("[!&#@%$]", "", read[1])
+read[2]<-gsub("e", "E", read[2])
+read[3]<-gsub("[0-9]","",read[3])
+read[4]<-gsub("[A-Z]", "", read[4])
+read[4]<-gsub("[a-z]", "", read[4])
+read[5]<-gsub("[0-9]","",read[5])
+read[5]<-gsub("[[:punct:]]", "", read[5])
+read[6]<-gsub("[[:space:]]", "", read[6])
+read[7]
+read[7]<-gsub("[[:lower:]]","",read[7])
+read[7]
+read[7]<-gsub("YOU","you",read[7])
+read[7]
+read[7]<-gsub("OK","ok",read[7])
+read[7]
+write.text(read, "memo_new.txt")
+write.table(read, "memo_new.txt")
+read <- readLines("data/memo.txt",encoding="UTF-8")
+read[1]<-gsub("[!&#@%$]", "", read[1])
+read[2]<-gsub("e", "E", read[2])
+read[3]<-gsub("[0-9]","",read[3])
+read[4]
+read[4]<-gsub("[A-Za-z]", "", read[4])
+read[4]
+read <- readLines("data/memo.txt",encoding="UTF-8")
+read[1]<-gsub("[!&#@%$]", "", read[1])
+read[2]<-gsub("e", "E", read[2])
+read[3]<-gsub("[0-9]","",read[3])
+read[4]<-gsub("[A-Za-z]", "", read[4])
+read[5]<-gsub("[0-9]","",read[5])
+read[5]<-gsub("[[:punct:]]", "", read[5])
+read[6]<-gsub("[[:space:]]", "", read[6])
+read[7]<-gsub("YOU","you",read[7])
+read[7]<-gsub("OK","ok",read[7])
+#tolower(read[7])
+write.table(read, "memo_new.txt")
+read[5]
+str_to_upper(read[7])
+read[7]
+read
+read[6]
+url<- "http://www.saramin.co.kr/zf_user/search?search_area=main&search_done=y&search_optional_item=n&searchType=default_mysearch&searchword=Java"
+text <- read_html(url)
+text
+node1 <- html_nodes(text, ".lbl_sfilter>.txt")
+node1
+comicName <- html_text(node1, trim=TRUE)
+comicName
+tech_name<-gsub("[[:punct:]]", "", tech_name)
+tech_name <- html_text(node1, trim=TRUE)
+tech_name<-gsub("[[:punct:]]", "",tech_name)
+tech_name
+node2 <- html_nodes(text, ".lbl_sfilter>.count")
+node2
+info_count <- html_text(node2, trim=TRUE)
+info_count
+info_count <-gsub("[[:punct:]]", "",info_count)
+info_count
+tech_name<-tech_name[1:30]
+tech_name
+saramin<- cbind(tech_name, info_count)
+write.csv(saramin, "saramin.csv")
+site<-NULL
+text<-NULL
+site<-"https://search.daum.net/search?w=news&q=%EA%B5%90%EC%9C%A1&DA=PGD&spacing=0&p="
+url <- paste(site, 1, sep="")
+text <- read_html(url)
+text
+url <- paste(site, 2, sep="")
+text <- read_html(url)
+text
+node2 <- html_nodes(text, xpath="//*[@id='clusterResultUL']/li/div/div/p")
+node2
+newspaper <- html_text(node2, trim=TRUE)
+newspaper
+for(i in 1:20) {
+url <- paste(site, i, sep="")
+text <- read_html(url)
+node1 <- html_nodes(text, ".f_link_b")
+newstitle <- html_text(node1)
+node2 <- html_nodes(text, xpath="//*[@id='clusterResultUL']/li/div/div/p")
+newspaper <- html_text(node2, trim=TRUE)
+daum <- rbind(newstitle, newspaper)
+}
+site<-NULL
+text<-NULL
+site<-"https://search.daum.net/search?w=news&q=%EA%B5%90%EC%9C%A1&DA=PGD&spacing=0&p="
+for(i in 1:20) {
+url <- paste(site, i, sep="")
+text <- read_html(url)
+node1 <- html_nodes(text, ".f_link_b")
+newstitle <- html_text(node1)
+node2 <- html_nodes(text, xpath="//*[@id='clusterResultUL']/li/div/div/p")
+newspaper <- html_text(node2, trim=TRUE)
+daum <- rbind(newstitle, newspaper)
+}
+daum
+>
+""
+}
+write.csv(daum, "ex4.csv")
+daum <- cbind(newstitle, newspaper)
+site<-NULL
+text<-NULL
+site<-"https://search.daum.net/search?w=news&q=%EA%B5%90%EC%9C%A1&DA=PGD&spacing=0&p="
+for(i in 1:20) {
+url <- paste(site, i, sep="")
+text <- read_html(url)
+node1 <- html_nodes(text, ".f_link_b")
+newstitle <- html_text(node1)
+node2 <- html_nodes(text, xpath="//*[@id='clusterResultUL']/li/div/div/p")
+newspaper <- html_text(node2, trim=TRUE)
+daum <- cbind(newstitle[1], newspaper[1])
+daum <- cbind(newstitle[r], newspaper[r])
+}
+wri
+site<-NULL
+text<-NULL
+site<-"https://search.daum.net/search?w=news&q=%EA%B5%90%EC%9C%A1&DA=PGD&spacing=0&p="
+for(i in 1:20) {
+url <- paste(site, i, sep="")
+text <- read_html(url)
+node1 <- html_nodes(text, ".f_link_b")
+newstitle <- html_text(node1)
+node2 <- html_nodes(text, xpath="//*[@id='clusterResultUL']/li/div/div/p")
+newspaper <- html_text(node2, trim=TRUE)
+daum <- cbind(newstitle[1], newspaper[1])
+daum <- cbind(newstitle[r], newspaper[r])
+}
+site<-NULL
+text<-NULL
+site<-"https://search.daum.net/search?w=news&q=%EA%B5%90%EC%9C%A1&DA=PGD&spacing=0&p="
+for(i in 1:20) {
+url <- paste(site, i, sep="")
+text <- read_html(url)
+node1 <- html_nodes(text, ".f_link_b")
+newstitle <- html_text(node1)
+node2 <- html_nodes(text, xpath="//*[@id='clusterResultUL']/li/div/div/p")
+newspaper <- html_text(node2, trim=TRUE)
+daum <- cbind(newstitle, newspaper)
+}
+write.csv(daum, "ex4.csv")
+site<-NULL
+text<-NULL
+site<-"https://search.daum.net/search?w=news&q=%EA%B5%90%EC%9C%A1&DA=PGD&spacing=0&p="
+for(i in 1:20) {
+url <- paste(site, i, sep="")
+text <- read_html(url)
+node1 <- html_nodes(text, ".f_link_b")
+newstitle <- html_text(node1)
+node2 <- html_nodes(text, xpath="//*[@id='clusterResultUL']/li/div/div/p")
+newspaper <- html_text(node2, trim=TRUE)
+daum <- rbind(newstitle[i], newspaper[i])
+}
+write.csv(daum, "ex4.csv")
+write.csv(daum, "ex4.csv")
+site<-NULL
+site<-"https://search.daum.net/search?w=news&q=%EA%B5%90%EC%9C%A1&DA=PGD&spacing=0&p="
+text <- read_html(url)
+node1 <- html_nodes(text, ".f_link_b")
+newstitle <- html_text(node1)
+node2 <- html_nodes(text, xpath="//*[@id='clusterResultUL']/li/div/div/p")
+newspaper <- html_text(node2, trim=TRUE)
+daum <- cbind(newstitle, newspaper)
+node3<-html_nodes(text, ".f_nb date>.txt_bar")
+node3
+node3<-html_nodes(text, ".f_nb>.txt_bar")
+node3
+node3<-html_nodes(text, ".f_nb")
+node3
+node3<-html_nodes(text, ".f_nb date")
+node3
+node3<-html_nodes(text, ".f_link f_l mg_tit")
+node3
+node3<-html_nodes(text, "mg_tit")
+node3
+node3<-html_nodes(text, "list_news clear")
+node3
+node3<-html_nodes(text, ".list_news clear")
+node3
+node3<-html_nodes(text, ".list_news")
+node3
+node3<-html_nodes(text, "//*[@id='clusterResultUL']/li[1]/div[2]/div/div[2]/dl/dd/a/")
+node3<-html_nodes(text, "//*[@id='clusterResultUL']/div/dl/dd/a/")
+node3<-html_nodes(text, "//*[@id='clusterResultUL']/li div/div[2]/dl/dd/a")
+url <- "http://media.daum.net/ranking/popular/?regDate="
+newsall <- NULL
+#현재 50개만 읽어옴 총 500개 읽어와야함
+for(date in 20200301:20200310){
+site <- paste(url,date,sep="")
+text <- read_html(site)
+#뉴스 제목
+news.title <- html_nodes(text,'#mArticle > div > ul > li > div.cont_thumb > strong > a')
+title <- html_text(news.title)
+#신문사
+newspaper <- html_nodes(text,'span.info_news')
+site <- html_text(newspaper)
+news <- data.frame(newstitle=title, newspapername=site)
+newsall <- rbind(newsall,news)
+}
+write.csv(newsall,"20200327test1.csv")
+#read.csv("daumnews.csv")
+install.packages("RSelenium")
+library(RSelenium)
+remDr<-remoteDriver(remoteServerAddr= "localhost" ,
+port = 4445, browserName= "chrome")
+remDr$open()
+remDr$navigate("http://www.google.com/")
+remDr$open()
+remDr<-remoteDriver(remoteServerAddr= "localhost" ,
+port = 4445, browserName= "chrome")
+remDr<-remoteDriver(remoteServerAddr= "localhost" ,
+port = 4445, browserName= "chrome")
+remDr$open()
+remDr<-remoteDriver(remoteServerAddr= "localhost" ,
+port = 4445, browserName= "chrome")
+remDr$open()
+remDr<-remoteDriver(remoteServerAddr= "localhost" ,
+port = 4445, browserName= "chrome")
+remDr$open()
+install.packages("RSelenium")
+install.packages("RSelenium")
+library(RSelenium)
+remDr<-remoteDriver(remoteServerAddr= "localhost" ,
+port = 4445, browserName= "chrome")

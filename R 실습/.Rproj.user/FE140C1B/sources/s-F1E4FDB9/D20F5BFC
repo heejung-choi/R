@@ -1,0 +1,27 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1586333498780.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "D20F5BFC",
+    "lastKnownWriteTime" : 1586334909,
+    "last_content_update" : 1586334909620,
+    "path" : "C:/heejung/Rstudy/day8.R",
+    "project_path" : "day8.R",
+    "properties" : {
+        "cursorPosition" : "219,0",
+        "disableDependencyDiscovery" : "1",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 15,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

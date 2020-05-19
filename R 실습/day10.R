@@ -357,3 +357,4 @@ exam %>%
   arrange(desc(total)) %>%                            # 총합 변수 기준 정렬
   head                                          # 일부 추출
 
+

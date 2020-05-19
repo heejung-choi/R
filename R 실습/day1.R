@@ -144,8 +144,9 @@ count <- sample(1:100,7)
 month.korname <- c("일요일", "월요일", "화요일",
                    "수요일", "목요일", 
                    "금요일", "토요일")
-
 paste(month.korname, count, sep = ":");
+
+
 #원소별로 결합, month.korname과 count를 :을 이용하여 각각 결합
 #sep의 default값은 한 칸 띄어쓰기(공백)
 month.korname[which.max(count)];

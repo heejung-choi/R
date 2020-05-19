@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1586334980702.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "458EE66D",
+    "lastKnownWriteTime" : 1586335427,
+    "last_content_update" : 1586335427912,
+    "path" : "C:/heejung/Rstudy/mysapply.R",
+    "project_path" : "mysapply.R",
+    "properties" : {
+        "cursorPosition" : "3,41",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 16,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

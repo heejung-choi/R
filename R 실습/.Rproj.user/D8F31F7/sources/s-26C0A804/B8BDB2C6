@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1589170472585.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "B8BDB2C6",
+    "lastKnownWriteTime" : 1587605400,
+    "last_content_update" : 1587605400,
+    "path" : "C:/heejung/Rstudy/daumnews.R",
+    "project_path" : "daumnews.R",
+    "properties" : {
+        "cursorPosition" : "2,22",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1585212445908.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1252411144",
+    "id" : "BDDF7F3D",
+    "lastKnownWriteTime" : 1585286954,
+    "last_content_update" : 1585286954616,
+    "path" : "C:/heejung/Rstudy/ex.R",
+    "project_path" : "ex.R",
+    "properties" : {
+        "cursorPosition" : "7,40",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 16,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

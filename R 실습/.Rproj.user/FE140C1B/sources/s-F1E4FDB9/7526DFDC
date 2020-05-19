@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1585201769005.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "7526DFDC",
+    "lastKnownWriteTime" : 1586317557,
+    "last_content_update" : 1586317557517,
+    "path" : "C:/heejung/Rstudy/day5.R",
+    "project_path" : "day5.R",
+    "properties" : {
+        "cursorPosition" : "114,0",
+        "disableDependencyDiscovery" : "1",
+        "docOutlineSize" : "384.4266865231458",
+        "docOutlineVisible" : "0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1585282521688.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1840390776",
+    "id" : "8521BE72",
+    "lastKnownWriteTime" : 1585283518,
+    "last_content_update" : 1585283518744,
+    "path" : "C:/heejung/Rstudy/saramin.R",
+    "project_path" : "saramin.R",
+    "properties" : {
+        "cursorPosition" : "9,63",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 17,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

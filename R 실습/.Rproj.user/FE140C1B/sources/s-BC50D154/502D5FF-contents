@@ -1,0 +1,13 @@
+read <- readLines("data/memo.txt",encoding="UTF-8")
+read[1]<-gsub("[!&#@%$]", "", read[1])
+read[2]<-gsub("e", "E", read[2])
+read[3]<-gsub("[0-9]","",read[3])
+read[4]<-gsub("[A-Za-z]", "", read[4])
+read[5]<-gsub("[0-9]","",read[5])
+read[5]<-gsub("[[:punct:]]", "", read[5])
+read[6]<-gsub("[[:space:]]", "", read[6])
+read[7]<-gsub("YOU","you",read[7])
+read[7]<-gsub("OK","ok",read[7])
+#tolower(read[7])
+write.table(read, "memo_new.txt")
+

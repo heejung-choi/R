@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1586392023963.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "EA9A0169",
+    "lastKnownWriteTime" : 1586399504,
+    "last_content_update" : 1586399504848,
+    "path" : "C:/heejung/Rstudy/day9.R",
+    "project_path" : "day9.R",
+    "properties" : {
+        "cursorPosition" : "3,5",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 17,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

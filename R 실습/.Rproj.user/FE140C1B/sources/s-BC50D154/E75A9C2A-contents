@@ -1,0 +1,10 @@
+#문제 8
+numb<-scan("data/iotest1.txt")
+numb1<-sort(numb)
+numb2<-sort(numb,decreasing=T)
+numb3<-sum(numb)
+numb4<-min(numb)
+cat("오름차순:",numb1,"\n")
+cat("내림차순:",numb2,"\n")
+cat("합:",numb3,"\n")
+cat("평균:",numb4,"\n")

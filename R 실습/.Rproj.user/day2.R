@@ -1,0 +1,366 @@
+# matrix 실습
+x1 <-matrix(1:8, nrow = 2)
+#matrix는 R이 내장하고 있는 것 
+x1
+# 행이 2개이기 때문에 2*4 matrix생성
+x1<-x1*3
+x1
+#각각의 원소마다 3을 곱함
+sum(x1); min(x1);max(x1);mean(x1)
+#벡터가 왔는지, 매트릭스가 왔는지 확인하기 위해서 typeof(x)로 확인!!!!
+x2 <-matrix(1:8, nrow =3)
+x2
+#수가 맞지 않을 경우, 반복해서 채워줌
+(chars <- letters[1:10])
+# 대입문장을 가로로 묶어주게 되면 대입과 출력을 동시에 해준다.
+# 가로로 묶으면 화면에도 바로 내보내주기 때문에 한 명령어로 원하는 두가지를 
+#실행할 수 있다.
+
+mat1 <-matrix(chars)
+# chars로 매트릭스를 만들고 mat1에 담으시오.
+# 매트릭스가 만들어질 때에는 최대한 열을 채우는데 행의 갯수가 없기 때문에
+# 지금은 1열에만 데이터가 가득차 있는 것이다. 
+mat1; dim(mat1)
+#dim -> 몇행 몇열인지 알려준다.
+#아래 내용은 변수에 담지 않았다-> 단순히 화면에 출력
+# nrow: 행의 갯수 / ncol: 열의 갯수
+matrix(chars, nrow=1)
+matrix(chars, nrow=5)
+matrix(chars, nrow=5, byrow=T)
+matrix(chars, ncol=5)
+matrix(chars, ncol=5, byrow=T)
+matrix(chars, nrow=3, ncol=5)
+matrix(chars, nrow=3)
+
+
+vec1 <- c(1,2,3)
+vec2 <- c(4,5,6)
+vec3 <- c(7,8,9)
+# rbind, cbind는 가변형
+mat1 <- rbind(vec1,vec2,vec3); mat1
+# rbind 행단위, cbind 열단위
+# 행단위로 붙인 것은 행의 이름이 
+# 행의 인덱스, 열의 인덱스를 하나의 대괄호 안에 구분해서 준다. 
+# rbind 행마다 이름이 부여되었고, cbind 는 열마다 이름이 부여되었다.
+mat2 <- cbind(vec1,vec2,vec3); mat2
+mat1[1,1]
+# 1행,1열을 꺼내줘
+mat1[2,];mat1[,3]
+#2행의 모든열 #3열의 모든 행
+#이렇게 하는것이 벡터로 추출하는 것도 괜찮지만 매트릭스 형태를
+#유지하고 싶다면 drop이라는 속성을 사용한다. -> drop=F 
+mat1[1,1,drop=F]
+mat1[2,,drop=F];mat1[,3,drop=F]
+#행의 이름이나 열의 이름을 지우고 싶다면
+rownames(mat1) <- NULL
+colnames(mat2) <- NULL
+
+mat1;mat2
+# 행의 이름이나 열의 이름을 넣고 싶다면
+#이름을 넣는다면 가독성을 높일 수 있다.
+rownames(mat1) <- c("row1","row2","row3")
+colnames(mat1) <- c("col1","col2","col3")
+mat1
+ls()
+# 평균
+mean(x2) 
+# 총합
+sum(x2)
+#최솟값
+min(x2)
+#최댓값
+max(x2)
+#열단위로 summary 
+summary(x2)
+# 행에 대한 인덱스만 주고 열에 대한 것을 주지 않았다.
+# 두번째 행을 기준으로 일을 한다.
+mean(x2[2,])
+sum(x2[2,])
+# 위와같이 사용해도 되지만, rowSums/colSums를 사용할수도 있다.
+rowSums(x2); colSums(x2)
+# 행마다의 합계 colSums 열마다의 합계
+# apply : 적용해라!
+# x2를 가지고 행단위로 sum을 출력해줘 (1) 
+# 2는 열단위로 출력해 달라는 뜻이다.
+apply(x2, 1, sum); apply(x2, 2, sum)  
+?apply
+# Returns a vector or array or list of values obtained 
+# by applying a function to margins of an array or matrix.
+# array가 매트릭스에 포함된다고 본다.
+# 구글 검색시 뒤에 in r을 붙이면 쉽게 정보를 찾을 수 있다. 
+apply(x2, 1, max)
+apply(x2, 1, min)
+apply(x2, 1, mean)
+
+apply(x2, 2, max)
+apply(x2, 2, min)
+apply(x2, 2, mean)
+
+# Array 실습
+# 2행 3열 5층짜리 배열을 만들어줬다.
+a1 <- array(1:30, dim=c(2,3,5))
+a1
+a1[1,3,4]
+#행과 열을 생략하면 모든이라는 뜻이다. 3층의 모든 식구들이 다 나온다.
+a1[,,3]
+# 모든 층의 2열 데이터를 뽑아온다.
+a1[,2,]
+a1[1,,]
+a1[,2,]
+# array 구조를 유지하고 싶다면 drop을 한다.
+a1[1,3,4,drop=F]
+
+#현재 워킹 디렉토리 찾기
+getwd();
+
+
+# factor 실습
+#numeric
+score <- c(1,3,2,4,2,1,3,5,1,3,3,3)
+#character
+score2 <- c(1,3,2,4,2,1,3,5,1,3,3,3,"3")
+class(score)
+summary(score)
+#as.factor로 해도 되고 factor라고 해도 된다.
+f_score <- factor(score)
+
+class(f_score)
+#levels을 명시해주지 않았기 때문에 모든 값으로 넣어준다.
+f_score
+# summary를 하면 숫자라고 보지 않고 갯수를 세준다. 텍스트마이닝 할때 유용
+summary(f_score) 
+# levels들만 수행0
+#팩터는 정해진 범주 값을 저장하는 백터를 의미한다.
+
+levels(f_score)0
+
+plot(score)
+plot(f_score)
+
+#data에 금,일이 없기 때문에 levels에 금,일이 빠진다.
+data1 <- c("월","수","토","월",
+           "목","화")
+data1
+class(data1)
+summary(data1)
+day1 <- factor(data1)
+day1
+class(day1)
+summary(day1)
+levels(day1)
+# 레벨 주는 것
+#. 별 역할 없다 
+week.korabbname <- c("일", "월", "화",
+                     "수", "목", "금", "토")
+day2 <- factor(data1, 
+               levels=week.korabbname)
+day2
+summary(day2)
+# factor데이터 안에 있는 값들을 범주로 지정해준다. 
+# 지정해주지 않는다면 처음에 지정해줬던 데이터가 전부인줄 안다.
+levels(day2)
+
+
+#abo가 levels에 있지만 ab는 없다. 이때 ab는 결측값 처리가 된다 <NA>
+btype <- factor(
+  c("A", "O", "AB", "B", "O", "A"), 
+  levels=c("A", "B", "O"))
+btype
+summary(btype)
+levels(btype)
+
+gender <- factor(c(1,2,1,1,1,2,1,2), 
+                 levels=c(1,2), 
+                 labels=c("남성", "여성"))
+gender
+summary(gender)
+levels(gender)
+
+# 내장 데이터셋
+# 실행하면 관련한 설명이 나온다.
+data()
+#iris
+#head -> 앞에서부터 여섯개 tail은 앞에서부터 여섯개를 보여준다.
+iris; head(iris);tail(iris)
+#여러개 보고싶다면 뒤에 아규먼트를 넣어주면 된다.
+View(iris)
+str(iris)
+# str 실행시
+# IT메모리의 방이 변수
+# 통계학은 속성들의 값이 변수
+#'data.frame':	150 obs. of  5 variables:
+# 150개의 관측치(행) 5개의 속성(변수)
+
+
+library()
+# R이 설치되면서 같이 나타는 패키지를 의미한다.
+# base: The R Base Package 자바와 같다.
+#Dataframe 실습
+no <- c(1,2,3,4)
+name <- c('Apple','Banana','Peach','Berry')
+qty <- c(5,2,7,9)
+price <- c(500,200,200,500)
+fruit <- data.frame(no, name, qty, price)
+fruit
+str(fruit)
+View(fruit)
+
+fruit[1,]
+# -1 첫번째행 빼고
+fruit[-1,]
+fruit[,2]
+fruit[,3] 
+fruit[,3, drop=F]
+fruit[, c(3,4)]
+fruit[3,2]
+fruit[3,1]
+
+fruit[,3]
+fruit$qty # 가장 권장하는 방법, 명칭은 가독성이 좋다.
+#자바의 .연산자가 r에서는 $로 쓰인다. 연산자의 의미(멤버연산자)
+fruit[[3]]
+fruit[3]  # 데이터프레임 형식 유지 나머지는 백터로
+
+str(fruit$qty)
+str(fruit[3])
+
+#do it 샘플데이터
+# dataframe exam1
+english <- c(90, 80, 60, 70)
+math <- c(50, 60, 100, 20)
+classnum <- c(1,1,2,2)
+df_midterm <- data.frame(
+  english, math, classnum)
+df_midterm
+str(df_midterm)
+# names(df_midterm)라고 하면 열 우선이기 때문에 colnames를 보내준다.
+colnames(df_midterm)
+#rownames 자동으로 1234로 부여
+rownames(df_midterm)
+names(df_midterm)
+mean(df_midterm$english)
+mean(df_midterm$math)
+
+df_midterm2 <- data.frame(
+  c(90, 80, 60, 70), 
+  c(50, 60, 100, 20), 
+  c(1,1,2,2))
+colnames(df_midterm2)
+rownames(df_midterm2)
+names(df_midterm2)
+df_midterm2
+df_midterm2 <- data.frame(
+  영어=c(90, 80, 60, 70), 
+  수학=c(50, 60, 100, 20), 
+  클래스=c(1,1,2,2))
+df_midterm2
+df_midterm2$영어
+
+#df <- data.frame(var1=c(4,3,8), 
+#                 var2=c(2,6)) # 오류
+#Error in data.frame(var1 = c(4, 3, 8), var2 = c(2, 6)) : 
+#arguments imply differing number of rows: 3, 2
+#첫번째 변수는 rows가 3개인데 두번째 변수는 2개이다 -> 오류
+
+df <- data.frame(var1=c(4,3,8), 
+                 var2=c(2,6,1))
+str(df)
+#df라는 데이터 프래임에 var_sum이라는 변수를 새롭게 추가하겠다는 뜻
+#df의 var1과 var2를 추가해주겠다라는 뜻이다.
+df$var_sum <- df$var1 + df$var2
+df$result <- ifelse(df$var1>df$var2, 
+                    "var1이 크다", "var1이 작다")
+df
+getwd() # setwd('xxx')
+
+#csv파일열기
+score <- read.csv("data/score.csv")
+score
+View(score)
+str(score)
+#변수 추가 변수추가
+score$sum <- 
+score$math+score$english+score$science
+score$result <- ifelse(score$sum >= 200, 
+                       "pass", "fail")
+score;
+#팩터가 아니기 때문에 summary를 해도 갯수가 안나온다.
+#서머리는 아규먼트로 지정된 백터의 타입이 팩터형인가 아닌가에 따라 
+#처리하는 방법이 다르다.
+#범주형이 팩터이면 갯수를 출력해준다.
+summary(score$result)
+#이럴때 table함수를 돌리면 무조건 개수를 세준다 팩터/백터 관계없이.
+#개수를 셀때는 table로 많이 한다.
+table(score$result)
+summary(factor(score$result))
+score$result = factor(score$result) 
+str(score)
+summary(score)
+score$id = as.character(score$id)
+score$class = factor(score$class)
+
+score$grade<-ifelse(score$sum >= 230,"A",
+                    ifelse(score$sum >= 215,"B", 
+                           ifelse(score$sum >=200,"C","D")))
+score
+
+# order() 와 sort()
+v <- c(10,3,7,4,8) 
+sort(v) #인덱스 나열 작은값에서 큰값 순으로
+order(v)
+v;
+emp <- read.csv(file.choose(),
+                stringsAsFactors = F)
+emp
+str(emp)
+
+# emp에서 직원 이름
+emp$ename
+emp[,2]
+emp[,"ename"] 
+emp[,2, drop=FALSE] 
+emp[,"ename",drop=F] 
+emp[2]
+emp["ename"] 
+
+# emp에서 직원이름, 잡, 샐러리
+emp[,c(2,3,6)]
+emp[,c("ename","job","sal")]
+subset(emp,select = c(ename, job, sal))# 인용부호 없이 이름만 나열해도 된다.
+?subset
+# emp에서 1,2,3 행 들만
+emp[1:3,]
+emp[c(1,2,3),]
+?head
+head(emp)
+head(emp, n=10)
+
+# ename이 "KING"인 직원의 모든 정보
+emp[9,] 
+#8번째까지 f이다가 9번째부터 t이기 때문에 꺼내게 된다. 
+emp[c(F,F,F,F,F,F,F,F,T,F,F,F,
+      F,F,F,F,F,F,F,F),]
+emp[emp$ename=="KING",]
+#어떤 조건을 뽑아내겠다 라고 한다면 subset
+subset(emp,subset=emp$ename=="KING")
+#subset을 생략할 수도 있다.
+subset(emp,emp$ename=="KING") 
+
+emp[emp$ename=="KING",] 
+emp;
+# 커미션을 받는 직원들의 모든 정보 출력
+#na인것은 ture 아닌것은 false가 나온다.
+emp[!is.na(emp$comm),]
+# select ename,sal from emp where sal>=2000
+subset(emp, select=c("ename","sal"), 
+       subset= emp$sal>= 2000)
+#매개변수 이름 생략하고 순서 맞춰서 할수 있다.
+subset(emp, emp$sal>= 2000, 
+       c("ename","sal"))
+emp[emp$sal>=2000,c("ename","sal")]
+
+# select ename,sal from emp where sal between 2000 and 3000
+subset(emp, select=c("ename","sal"), subset=(sal>=2000 & sal<=3000))
+emp[emp$sal>=2000 & emp$sal <=3000, c("ename","sal")]
+
+

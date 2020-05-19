@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1585201616012.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4262378564",
+    "id" : "F29A3F78",
+    "lastKnownWriteTime" : 1585205179,
+    "last_content_update" : 1585205179019,
+    "path" : "C:/heejung/Rstudy/movie1.R",
+    "project_path" : "movie1.R",
+    "properties" : {
+        "cursorPosition" : "19,13",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

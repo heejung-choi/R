@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1586242583390.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "CF9FBD38",
+    "lastKnownWriteTime" : 1586250313,
+    "last_content_update" : 1586250313371,
+    "path" : "C:/heejung/Rstudy/starbucks.R",
+    "project_path" : "starbucks.R",
+    "properties" : {
+        "cursorPosition" : "32,24",
+        "scrollLine" : "15",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 19,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1589163478613.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "67938F0D",
+    "lastKnownWriteTime" : 1586317557,
+    "last_content_update" : 1586317557,
+    "path" : "C:/heejung/Rstudy/day5.R",
+    "project_path" : "day5.R",
+    "properties" : {
+        "cursorPosition" : "9,18",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
