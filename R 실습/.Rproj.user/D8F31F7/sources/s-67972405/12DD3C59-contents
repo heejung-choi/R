@@ -1,0 +1,29 @@
+# SNS의 Open API 활용
+install.packages("httr")
+library(httr)
+install.packages("rvest")
+library(rvest)
+install.packages("XML")
+library(XML)
+
+rm(list=ls())  # 요청할때 문제가 있었음에도 아까 성공시 요청했던 결과가 나오는 경우 .
+
+# 워드 클라우드2
+
+install.packages("wordcloud2")
+library(wordcloud2)
+(opal <- read.csv("C:/heejung/Rstudy/50대입원통계.csv",stringsAsFactors = F))
+str(opal)
+
+#원 기울여
+wordcloud2(opal,fontFamily = "Yang Rounded",size=1.0,col="random-light",backgroundColor = "black",rotateRatio = 1 ,minRotation = -pi/6, maxRotation = -pi/6)
+opal1
+#삼각형
+opalcold1<-wordcloud2(words, shape = 'triangle-forward',fontFamily = "Yang Rounded",size=1.0,col="random-light",backgroundColor = "black",rotateRatio = 0 ,minSize = 0.5)
+
+library("htmlwidgets")   # 결과를 html로 만들어 주는 도우미 패키지
+#원 기울여
+saveWidget(opalcold,"C:/Eunha/opalcold.html",selfcontained = F)
+#삼각형
+saveWidget(opalcold1,"C:/Eunha/opalcold_T.html",selfcontained = F)
+

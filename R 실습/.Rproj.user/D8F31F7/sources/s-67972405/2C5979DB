@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1589171409779.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "2C5979DB",
+    "lastKnownWriteTime" : 1589775581,
+    "last_content_update" : 1589775581273,
+    "path" : "C:/heejung/Rstudy/tm1.R",
+    "project_path" : "tm1.R",
+    "properties" : {
+        "cursorPosition" : "8,25",
+        "scrollLine" : "0",
+        "source_window_id" : ""
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

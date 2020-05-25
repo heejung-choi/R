@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1590379979428.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "D92D20E4",
+    "lastKnownWriteTime" : 7160569971446915616,
+    "last_content_update" : 1590379979428,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "2F6F8A7B",
+        "caption" : "goodfood",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=goodfood&cache_key=2F6F8A7B",
+        "displayedObservations" : 15401,
+        "environment" : "",
+        "expression" : "goodfood",
+        "object" : "goodfood",
+        "preview" : 0,
+        "totalObservations" : 15401,
+        "variables" : 4
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 11,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

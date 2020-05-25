@@ -1,0 +1,23 @@
+
+#hotel.txt를 읽고 제일 많이 나온 명사 10개를 명칭과 횟수(내림차순)로
+#구성되는 데이터프레임을 생성해서 
+#hotel_top_word.csv 로 저장한다. 작성된 R 소스는 tm1.R 저장한 후에
+#tm1.R 과 hotel_top_word.csv 을 제출한다.
+hotel <- readLines("hotel.txt")
+hotel2<- extractNoun(hotel)
+hotel2
+hotelUn <- unlist(hotel2)
+hotelUn
+hotelUn2<-gsub("[^가-힣]", "",hotelUn)
+hotelUn3<-gsub(" ", "",hotelUn2)
+hotelUn4 <- Filter(function(x) {nchar(x) >= 2}, hotelUn3)
+hotelUn4
+word_table <- table(hotelUn4)
+word_table 
+final <- sort(word_table, decreasing = T)
+final
+hotelResult<-head(final, 10)
+hotelResult2 <- as.data.frame(hotelResult)
+write.csv(hotelResult2,file="hotel_top_word.csv")
+
+# 워드클라우드/ # 영양데이터/ 
